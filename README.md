@@ -24,6 +24,10 @@ network={
 Source: <https://www.raspberrypi.org/documentation/remote-access/ssh/README.md>
 For headless setup, SSH can be enabled by placing a file named `ssh`, without any extension, onto the boot partition of the SD card from another computer. The content of the file does not matter; it could contain text, or nothing at all.
 
+### Password-less SSH access
+
+`ssh-copy-id -i ~/.ssh/id_rsa.pub pi@192.168.1.10`
+
 ### Configure I2C
 
 Type `sudo raspi-config`  
