@@ -22,4 +22,4 @@ package:
 	python setup.py sdist
 
 clean:
-	rm -rf build dist nlp.egg-info
+	rm -rf build dist breakalert.egg-info

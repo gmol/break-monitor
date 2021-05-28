@@ -7,7 +7,7 @@ with open('README.md') as fp:
 
 
 def find_version():
-    with open('breakalert/__init__.py') as fp:
+    with open('states/__init__.py') as fp:
         for line in fp:
             # __version__ = '0.1.0'
             match = re.search(r"__version__\s*=\s*'([^']+)'", line)
@@ -19,7 +19,7 @@ def find_version():
 setup(
     name='breakalert',
     version=find_version(),
-    packages=['breakalert'],
+    packages=['states'],
     description='Raspberry Pi Zero project to remind about break time',
     long_description=long_description,
     long_description_content_type='text/markdown',

@@ -12,6 +12,7 @@ class Activity(Enum):
 class LightColor(Enum):
     RED = 1
     GREEN = 2
+    WHITE = 3
 
 
 class LightMode(Enum):

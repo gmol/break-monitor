@@ -36,3 +36,25 @@ Choose interface
 ![raspi-config](./docs/img/rasp-config.png)  
 Enable i2c  
 ![i2c](./docs/img/i2c.png)  
+
+## Software
+
+## How to install dependencies
+
+Look at the [Makefile](./Makefile) file.
+
+### Run unit tests
+
+Run command from the root directory:
+
+```shell
+  pytest
+```
+### Get coverage report
+
+Activate venv and run the following commands:
+
+```shell
+    (venv) C:\git\python\breakalert>coverage run -m pytest
+    (venv) C:\git\python\breakalert>coverage html
+```

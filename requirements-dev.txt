@@ -1,4 +1,6 @@
 pytest==6.2.4
 flake8==3.9.2
+coverage==5.5
+
 
 
