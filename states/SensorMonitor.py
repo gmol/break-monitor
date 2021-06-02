@@ -7,7 +7,7 @@ class SensorMonitor:
 
     def __init__(self, work_detector, ranger):
         self.work_detector = work_detector
-        self.ranger
+        self.ranger = ranger
         pass
 
     def monitor(self):
