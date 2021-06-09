@@ -14,8 +14,7 @@ class SensorMonitor:
         while True:
             distance = self.ranger.get_distance()
             if distance < 500:
-                # timestamp in seconds
-                timestamp = round(time.time())
+                timestamp = round(time.time())  # in seconds
                 sample = Sample(timestamp, distance)
                 self.work_detector.add_sample(sample)
             time.sleep(1)

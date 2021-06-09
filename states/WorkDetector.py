@@ -15,5 +15,7 @@ class WorkDetector:
         pass
 
     def detect(self, strategy=AverageDistance()):
-        return strategy.detect(self.measurements)
+        if len(self.measurements) > 0:
+            return strategy.detect(self.measurements)
+        return False
 

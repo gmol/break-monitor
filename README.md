@@ -39,9 +39,18 @@ Enable i2c
 
 ## Software
 
-## How to install dependencies
+### How to install dependencies
 
 Look at the [Makefile](./Makefile) file.
+
+### Run app
+
+```bat
+REM Set PYTHONPATH
+C:\git\python\breakalert>set PYTHONPATH=.
+REM Run app using python from ven
+C:\git\python\breakalert>C:\git\python\breakalert\venv\Scripts\python.exe C:/git/python/breakalert/states/main.py
+```
 
 ### Run unit tests
 
