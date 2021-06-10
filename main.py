@@ -10,6 +10,7 @@ from states.TimeProvider import TimeProvider
 
 if __name__ == '__main__':
     logger = logging.getLogger("Context")
+    logger.info("Start")
     # Instantiate the parser
     parser = argparse.ArgumentParser(description='Optional app description')
 
