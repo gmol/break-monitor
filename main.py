@@ -5,7 +5,7 @@ from time import sleep
 
 from states.Constants import Activity
 from states.Context import Context
-from states.Light import Light
+from states.LightController import LightController
 from states.TimeProvider import TimeProvider
 
 if __name__ == '__main__':
@@ -41,8 +41,8 @@ if __name__ == '__main__':
     else:
         logger.info(">>>>> DEVELOPMENT environment <<<<<")
 
-    ctxt = Context(Light(), TimeProvider())
-    # ctxt = Context(Light())
+    ctxt = Context(LightController(), TimeProvider())
+    # ctxt = Context(LightController())
     ctxt.update_action(Activity.WORKING)
     ctxt.update_action(Activity.IDLE)
     ctxt.update_action(Activity.WORKING)

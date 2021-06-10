@@ -5,7 +5,7 @@ from unittest.mock import Mock
 
 from states.Constants import Activity, OVERTIME, LightColor, LightMode
 from states.Context import Context
-from states.Light import Light
+from states.LightController import LightController
 from states.RestState import RestState
 from states.TimeProvider import TimeProvider
 from states.WorkState import WorkState
@@ -15,7 +15,7 @@ class TestWorkState(TestCase):
 
     def setUp(self):
         self.logger = logging.getLogger("TestWorkState")
-        self.mock_light = Mock(spec=Light)
+        self.mock_light = Mock(spec=LightController)
         self.mock_time_provider = Mock(spec=TimeProvider)
         self.mock_time_provider.get_current_time.side_effect = [time.time(), time.time() + OVERTIME + 1]
         self.context = Context(self.mock_light, self.mock_time_provider)

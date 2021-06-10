@@ -4,14 +4,14 @@ from unittest.mock import Mock
 from states.Constants import LightMode, Activity, LightColor
 from states.Context import Context
 from states.IdleState import IdleState
-from states.Light import Light
+from states.LightController import LightController
 from states.TimeProvider import TimeProvider
 from states.WorkState import WorkState
 
 
 class TestIdleState(TestCase):
     def setUp(self):
-        self.mock_light = Mock(spec=Light)
+        self.mock_light = Mock(spec=LightController)
         self.context = Context(self.mock_light)
         # Idle state light
         self.mock_light.on.assert_called_with(LightMode.SOLID, {'color': LightColor.WHITE})

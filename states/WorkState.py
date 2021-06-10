@@ -9,9 +9,9 @@ class WorkState(State):
 
     def __init__(self, context):
         super().__init__(context)
-        logger = logging.getLogger("WorkState")
+        self.logger = logging.getLogger("WorkState")
         self.timer = context.get_current_time()
-        logger.debug(f"* WorkStare created [${self.timer}]")
+        self.logger.debug(f"* WorkStare created [${self.timer}]")
         self.context.light_on(LightMode.SOLID, {'color': LightColor.RED})
 
     def evaluate(self, activity):

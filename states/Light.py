@@ -1,13 +1,12 @@
 from abc import ABC, abstractmethod
 
-from states.Constants import LightMode
-
 
 class Light(ABC):
-    # @abstractmethod
-    def on(self, mode=LightMode.SOLID, config={}):
+
+    @abstractmethod
+    def on(self, config={}):
         pass
 
-    # @abstractmethod
+    @abstractmethod
     def off(self):
         pass
