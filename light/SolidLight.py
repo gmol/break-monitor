@@ -1,7 +1,7 @@
 import logging
 
 import blinkt
-from states.Light import Light
+from light.Light import Light
 
 
 class SolidLight(Light):

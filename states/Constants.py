@@ -1,7 +1,7 @@
 from enum import Enum
 
-REST_TIME = 5
-OVERTIME = 3
+REST_TIME = 45
+OVERTIME = 1 * 60
 
 
 class Activity(Enum):

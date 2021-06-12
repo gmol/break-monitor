@@ -1,11 +1,11 @@
 import logging
-from abc import ABC, abstractmethod
+from abc import ABC
 
 # from states import SolidLight
 from states.Constants import LightMode
 from pprint import pprint
 
-from states.SolidLight import SolidLight
+from light.SolidLight import SolidLight
 
 
 class LightController(ABC):

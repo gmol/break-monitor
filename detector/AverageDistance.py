@@ -2,8 +2,8 @@ import statistics
 import time
 from typing import List
 
-from states.DetectionStrategy import DetectionStrategy
-from states.Sample import Sample
+from detector.DetectionStrategy import DetectionStrategy
+from detector.Sample import Sample
 
 
 class AverageDistance(DetectionStrategy):

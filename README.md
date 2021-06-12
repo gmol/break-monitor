@@ -47,9 +47,9 @@ Look at the [Makefile](./Makefile) file.
 
 ```bat
 REM Set PYTHONPATH
-C:\git\python\breakalert>set PYTHONPATH=.
+set PYTHONPATH=.
 REM Run app using python from ven
-C:\git\python\breakalert>C:\git\python\breakalert\venv\Scripts\python.exe C:/git/python/breakalert/states/main.py
+.\venv\Scripts\python.exe states/main.py
 ```
 
 ### Run unit tests
@@ -59,6 +59,7 @@ Run command from the root directory:
 ```shell
   pytest
 ```
+
 ### Get coverage report
 
 Activate venv and run the following commands:
@@ -67,3 +68,104 @@ Activate venv and run the following commands:
     (venv) C:\git\python\breakalert>coverage run -m pytest
     (venv) C:\git\python\breakalert>coverage html
 ```
+
+## TODO
+
+```plantuml
+@startmindmap
+<style>
+mindmapDiagram {
+  ' node {
+  '   BackgroundColor lightGreen
+  ' }
+  ' boxless {
+  '   FontColor darkgreen
+  ' }
+    :depth(1) {
+      BackGroundColor lightgreen
+    }
+    :depth(2) {
+      BackGroundColor lightblue
+    }
+}
+</style>
+
+*_ breakalert
+
+++ configuration
+
++++ restore default configuration
+
++++ measurements
+++++ provide a better measurement sample cleanup\ne.g. wait for 1k samples and delete older than 5min
+++++ default strategy
+++++ strategy configuration
++++++ distance strategy
+++++++ distance
++++++ ... strategy
+
++++  duration
+++++ rest duration
+++++ work duration
+
++++   light
+++++  effect configuration
++++++ solid light
+++++++ color
+++++++ brightness
++++++ blinking light
+++++++ color
+++++++ brightness
+++++++ blink frequency
+++++  state effects 
++++++ work effect
++++++ rest effect
++++++ idle effect
+++++  general brightness
+
+-- testing
+
+-- command line\nconfiguration
+--- production/debug
+--- measurement strategy
+
+@endmindmap
+```
+
+## Configuration
+
+```plantuml
+@startjson
+{
+   "light":{
+     "effect configuration":{},
+     "state effects": {
+       "work effect": "blinking light",
+       "rest effect": "solid light",
+       "idle effect": ""
+     },
+     "general brightness": "1.0"
+   },
+   "duration": {
+     "work" : "25",
+     "rest" : "5"
+   },
+   "measurements": {
+     "default strategy" : "distanceStrategy",
+     "strategy configuration": {
+       "distanceStrategy" : {
+         "distance" : 150
+       }
+     }
+   }
+}
+@endjson
+```
+
+## Cancelable repetitive task
+
+
+| Note                       | Link                                                                                                             |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| Cancelable repetitive task | <https://stackoverflow.com/questions/22498038/improve-current-implementation-of-a-setinterval/22498708#22498708> |
+| metronome like ticks       | <https://stackoverflow.com/a/25251804/4279>                                                                      |

@@ -1,7 +1,9 @@
-from states.AverageDistance import AverageDistance
+import time
+
+from detector.AverageDistance import AverageDistance
 from typing import List
 
-from states.Sample import Sample
+from detector.Sample import Sample
 
 
 class WorkDetector:
@@ -16,6 +18,10 @@ class WorkDetector:
 
     def detect(self, strategy=AverageDistance()):
         if len(self.measurements) > 0:
+            if len(self.measurements) > 1000:
+                # TODO provide a better cleanup
+                del self.measurements[0]
+            current_time = time.time()
             return strategy.detect(self.measurements)
         return False
 

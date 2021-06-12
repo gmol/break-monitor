@@ -1,11 +1,13 @@
 import time
 
-from states.Sample import Sample
+from detector.Sample import Sample
+from detector.WorkDetector import WorkDetector
+from sensors.GroveUltrasonicRanger import GroveUltrasonicRanger
 
 
 class SensorMonitor:
 
-    def __init__(self, work_detector, ranger):
+    def __init__(self, work_detector=WorkDetector(), ranger=GroveUltrasonicRanger()):
         self.work_detector = work_detector
         self.ranger = ranger
         pass
@@ -13,8 +15,8 @@ class SensorMonitor:
     def monitor(self):
         while True:
             distance = self.ranger.get_distance()
-            if distance < 500:
-                timestamp = round(time.time())  # in seconds
+            if distance:
+                timestamp = round(time.time())  # in seconds [int]
                 sample = Sample(timestamp, distance)
                 self.work_detector.add_sample(sample)
             time.sleep(1)

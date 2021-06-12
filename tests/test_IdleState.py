@@ -4,8 +4,7 @@ from unittest.mock import Mock
 from states.Constants import LightMode, Activity, LightColor
 from states.Context import Context
 from states.IdleState import IdleState
-from states.LightController import LightController
-from states.TimeProvider import TimeProvider
+from light.LightController import LightController
 from states.WorkState import WorkState
 
 

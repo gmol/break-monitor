@@ -45,7 +45,7 @@ class GroveUltrasonicRanger(object):
         t2 = time.time()
 
         dt = int((t1 - t0) * 1000000)
-        if dt > 530:
+        if dt > 500:
             return None
 
         distance = ((t2 - t1) * 1000000 / 29 / 2)  # cm
@@ -53,7 +53,4 @@ class GroveUltrasonicRanger(object):
         return distance
 
     def get_distance(self):
-        while True:
-            dist = self._get_distance()
-            if dist:
-                return dist
+        return self._get_distance()

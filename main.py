@@ -1,11 +1,15 @@
 import argparse
 import logging
-import sys
 from time import sleep
 
+from detector.WorkDetector import WorkDetector
+from sensors.FakeSonar import FakeSonar
+from sensors.GroveUltrasonicRanger import GroveUltrasonicRanger
+from sensors.SensorMonitor import SensorMonitor
+from states import Constants
 from states.Constants import Activity
 from states.Context import Context
-from states.LightController import LightController
+from light.LightController import LightController
 from states.TimeProvider import TimeProvider
 
 if __name__ == '__main__':
@@ -37,11 +41,15 @@ if __name__ == '__main__':
     # logger.info(args.opt_pos_arg)
     # logger.info(args.opt_arg)
     # logger.info(args.production)
-    if args.production:
+    monitor = SensorMonitor()
+    if not args.production:
         logger.info(">>>>> PRODUCTION environment <<<<<")
+        Constants.REST_TIME = 3
+        Constants.OVERTIME = 5
+        monitor = SensorMonitor(work_detector=WorkDetector(), ranger=FakeSonar())
     else:
         logger.info(">>>>> DEVELOPMENT environment <<<<<")
-
+    print(f"OVERTIME [${Constants.OVERTIME}] seconds and REST time [${Constants.REST_TIME}] seconds")
     ctxt = Context(LightController(), TimeProvider())
     # ctxt = Context(LightController())
     ctxt.update_action(Activity.WORKING)
