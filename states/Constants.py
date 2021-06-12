@@ -13,8 +13,12 @@ class LightColor(Enum):
     RED = 1
     GREEN = 2
     WHITE = 3
+    YELLOW = 4
 
 
-class LightMode(Enum):
-    SOLID = 1
-    BLINKING = 2
+class LightEffect(Enum):
+    SOLID_RED = 1
+    SOLID_GREEN = 3
+    SOLID_YELLOW = 3
+    SOLID_WHITE = 4
+    BLINKING = 45

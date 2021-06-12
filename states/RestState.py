@@ -1,6 +1,6 @@
 import logging
 
-from states.Constants import LightMode, LightColor, Activity, REST_TIME
+from states.Constants import LightEffect, LightColor, Activity, REST_TIME
 from states.IdleState import IdleState
 from states.State import State
 
@@ -13,7 +13,7 @@ class RestState(State):
         self.nextState = work_state
         self.logger.info("* RestState created")
         self.timer = self.context.get_current_time()
-        self.context.light_on(LightMode.SOLID, {'color': LightColor.WHITE})
+        self.context.light_on(LightEffect.SOLID_GREEN)
 
     def evaluate(self, activity):
         if activity == Activity.WORKING:

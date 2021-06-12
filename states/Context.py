@@ -1,15 +1,16 @@
 import logging
 import time
 
+from light.LightController import LightController
 from states.Constants import Activity
 from states.IdleState import IdleState
 
 
 class Context:
 
-    def __init__(self, light, time_provider=None):
+    def __init__(self, light_controller: LightController, time_provider=None):
         self.logger = logging.getLogger("Context")
-        self.light = light
+        self.light_controller = light_controller
         self.state = IdleState(self)
         self.timeProvider = time_provider
 
@@ -17,7 +18,7 @@ class Context:
         self.logger.info(f"-----> Change state ${state}")
         self.state = state
 
-    def update_action(self, activity):
+    def update_action(self, activity: Activity):
         # print(f"-----> change state ${activity}")
         # print(f"-----> change state ${Activity.WORKING}")
         # if activity == Activity.WORKING:
@@ -27,13 +28,11 @@ class Context:
         self.logger.debug(f"Update activity ${activity}")
         self.state.evaluate(activity)
 
-    def light_on(self, light_mode, config):
-        self.logger.debug(f"${config} light ON with ${light_mode} mode")
-        self.light.on(light_mode, config)
+    def light_on(self, light_mode):
+        self.light_controller.on(light_mode)
 
     def light_off(self):
-        self.logger.info(f"light OFF")
-        self.light.off()
+        self.light_controller.off()
 
     def get_current_time(self):
         if self.timeProvider is None:
