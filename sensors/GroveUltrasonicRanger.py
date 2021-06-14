@@ -11,7 +11,7 @@ def usleep(x): return time.sleep(x / 1000000.0)
 
 
 class GroveUltrasonicRanger(object):
-    def __init__(self, pin):
+    def __init__(self, pin=16):
         self.dio = GPIO(pin)
 
     def _get_distance(self):
@@ -45,7 +45,7 @@ class GroveUltrasonicRanger(object):
         t2 = time.time()
 
         dt = int((t1 - t0) * 1000000)
-        if dt > 500:
+        if dt > 530:
             return None
 
         distance = ((t2 - t1) * 1000000 / 29 / 2)  # cm
@@ -53,4 +53,7 @@ class GroveUltrasonicRanger(object):
         return distance
 
     def get_distance(self):
-        return self._get_distance()
+        d = self._get_distance()
+        if d and d > 500:
+            return None
+        return d

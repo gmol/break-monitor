@@ -2,7 +2,7 @@ import logging
 import time
 
 from light.LightController import LightController
-from states.Constants import Activity
+from states.Config import Activity
 from states.IdleState import IdleState
 
 
@@ -25,7 +25,7 @@ class Context:
         #     print(f"Update activity ${activity} and ${Activity.WORKING} are ==")
         # else:
         #     print(f"Update activity ${activity} and ${Activity.WORKING} are !=")
-        self.logger.debug(f"Update activity ${activity}")
+        # self.logger.debug(f"Update activity ${activity}")
         self.state.evaluate(activity)
 
     def light_on(self, light_mode):

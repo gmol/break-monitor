@@ -2,8 +2,8 @@ import logging
 from abc import ABC
 
 # from states import SolidLight
-from states.Constants import LightEffect
-from states.Constants import LightColor
+from states.Config import LightEffect
+from states.Config import LightColor
 from pprint import pprint
 
 from light.SolidLight import SolidLight
@@ -22,11 +22,19 @@ class LightController(ABC):
         if self.currentEffect != effect:
             self.currentEffect = effect
             if effect == LightEffect.SOLID_GREEN:
-                self.light = SolidLight({"color": LightColor.GREEN})
+                self.light = SolidLight({
+                    "color": LightColor.GREEN,
+                    "brightness": 0.05
+                })
             elif effect == LightEffect.SOLID_YELLOW:
-                self.light = SolidLight({"color": LightColor.YELLOW})
+                self.light = SolidLight({
+                    "color": LightColor.YELLOW,
+                    "brightness": 0.05
+                })
             elif effect == LightEffect.SOLID_WHITE:
                 self.light = SolidLight({"color": LightColor.WHITE})
+            elif effect == LightEffect.SOLID_BLUE:
+                self.light = SolidLight({"color": LightColor.BLUE})
             else:
                 self.light = SolidLight({"color": LightColor.RED})
             self.light.on()

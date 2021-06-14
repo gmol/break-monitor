@@ -1,3 +1,4 @@
+import logging
 import statistics
 import time
 from typing import List
@@ -12,6 +13,9 @@ class AverageDistance(DetectionStrategy):
     DISTANCE_THRESHOLD = 100
     Samples = List[Sample]
 
+    def __init__(self):
+        self.logger = logging.getLogger("AverageDistance")
+
     def detect(self, measurements: Samples):
         current_time_in_sec = round(time.time())
         recent_samples = list(filter(
@@ -19,6 +23,7 @@ class AverageDistance(DetectionStrategy):
         ))
         recent_distance_values = map(lambda s: s.distance, recent_samples)
         average_distance = statistics.mean(recent_distance_values)
+        self.logger.info("Obseved window[{}] Average distance[{}]".format(len(recent_samples), average_distance))
         if average_distance < self.DISTANCE_THRESHOLD:
             return True
         return False

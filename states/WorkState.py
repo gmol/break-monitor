@@ -1,6 +1,6 @@
 import logging
 
-from states.Constants import LightColor, LightEffect, OVERTIME, Activity
+from states.Config import LightColor, LightEffect, OVERTIME, Activity
 from states.RestState import RestState
 from states.State import State
 
@@ -16,6 +16,7 @@ class WorkState(State):
 
     def evaluate(self, activity):
         if activity == Activity.IDLE:
+            self.logger.info("----->  Idle activity move to rest")
             self.context.light_off()
             # Create Break state and switch
             self.context.change_state(RestState(self.context, self))
@@ -24,4 +25,4 @@ class WorkState(State):
             self.context.light_on(LightEffect.SOLID_RED)
         else:
             self.logger.info("----->  Working time!")
-            self.context.light_on(LightEffect.SOLID_YELLOW)
+            self.context.light_on(LightEffect.SOLID_BLUE)

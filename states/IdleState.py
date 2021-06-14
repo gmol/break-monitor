@@ -1,6 +1,6 @@
 import logging
 
-from states.Constants import LightEffect, LightColor, Activity
+from states.Config import LightEffect, LightColor, Activity
 from states.State import State
 
 
@@ -14,9 +14,11 @@ class IdleState(State):
 
     def evaluate(self, activity) -> None:
         if activity == Activity.WORKING:
+            self.logger.info("Working activity move to WorkState")
             self.context.light_off()
             # Create Work state and switch
             from states.WorkState import WorkState
             self.context.change_state(WorkState(self.context))
         elif activity == Activity.IDLE:
-            self.context.light_on(LightEffect.SOLID_GREEN)
+            self.logger.info("Idle activity")
+            self.context.light_on(LightEffect.SOLID_WHITE)

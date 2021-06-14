@@ -3,7 +3,7 @@ from typing import List
 
 from detector.Sample import Sample
 from light.LightController import LightController
-from states.Constants import Activity
+from states.Config import Activity
 from states.Context import Context
 from states.TimeProvider import TimeProvider
 

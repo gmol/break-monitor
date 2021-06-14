@@ -1,7 +1,7 @@
 from unittest import TestCase
 from unittest.mock import Mock
 
-from states.Constants import LightEffect, Activity, LightColor
+from states.Config import LightEffect, Activity, LightColor
 from states.Context import Context
 from states.IdleState import IdleState
 from light.LightController import LightController

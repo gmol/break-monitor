@@ -1,6 +1,6 @@
 import logging
 
-from states.Constants import LightEffect, LightColor, Activity, REST_TIME
+from states.Config import LightEffect, LightColor, Activity, REST_TIME
 from states.IdleState import IdleState
 from states.State import State
 
@@ -17,7 +17,7 @@ class RestState(State):
 
     def evaluate(self, activity):
         if activity == Activity.WORKING:
-
+            self.logger.info("working move to WorkState")
             # TODO This might be optional. Do not come back to WorkState after the break started
             # You can avoid false work comebacks if you rest time is near the desk
             # Unless the activity evaluation exclude near desk presence as working time
@@ -26,7 +26,11 @@ class RestState(State):
             self.nextState.adjust_timer(-self.context.get_current_time() + self.timer)
             self.context.change_state(self.nextState)
             self.context.light_off()
+            pass
         if self.timer + REST_TIME < self.context.get_current_time():
+            self.logger.info("Activity[{}] rest finish move to Idle state".format(activity))
             # Create Idle state and switch
             self.context.change_state(IdleState(self.context))
             self.context.light_off()
+            pass
+        self.logger.info("Activity[{}] resting".format(activity))
