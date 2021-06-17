@@ -1,4 +1,4 @@
-# break-pi-project
+# breakalert project
 
 ## Raspberry Pi Zero Setup
 
@@ -36,6 +36,11 @@ Choose interface
 ![raspi-config](./docs/img/rasp-config.png)  
 Enable i2c  
 ![i2c](./docs/img/i2c.png)  
+
+### TMUX
+
+- [tmux cheatsheet](./docs/img/tmux.png)
+- [tmux cheatsheet b/w](./docs/img/tmux-printer.png)
 
 ## Software
 

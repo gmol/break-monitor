@@ -9,7 +9,7 @@ class IdleState(State):
         super().__init__(context)
         self.logger = logging.getLogger("IdleState")
         self.logger.info("* IdleState created")
-        self.context.light_on(LightEffect.SOLID_WHITE)
+        # self.context.light_on(LightEffect.SOLID_WHITE)
         # self.context.light_on(LightEffect.SOLID_RED, {'color':  LightColor.WHITE})
 
     def evaluate(self, activity) -> None:

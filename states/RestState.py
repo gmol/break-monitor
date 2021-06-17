@@ -24,13 +24,14 @@ class RestState(State):
 
             # Adjust the working state timer by deducting a 'short' break time
             self.nextState.adjust_timer(-self.context.get_current_time() + self.timer)
-            self.context.change_state(self.nextState)
             self.context.light_off()
+            self.context.change_state(self.nextState)
             pass
         if self.timer + REST_TIME < self.context.get_current_time():
             self.logger.info("Activity[{}] rest finish move to Idle state".format(activity))
             # Create Idle state and switch
-            self.context.change_state(IdleState(self.context))
             self.context.light_off()
+            self.context.change_state(IdleState(self.context))
             pass
-        self.logger.info("Activity[{}] resting".format(activity))
+        self.logger.info("Activity[{}] resting. Timer[{}]"
+                         .format(activity, round(self.context.get_current_time() - self.timer)))

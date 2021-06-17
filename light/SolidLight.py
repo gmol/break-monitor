@@ -16,29 +16,22 @@ class SolidLight(Light):
     def __init__(self, config={"color": Config.LightColor.RED}):
         self.logger = logging.getLogger("SolidLight")
         self.logger.info("Solid Light created{}".format(config))
-        self.r = 255
-        self.g = self.b = 0
-        if config["color"] == Config.LightColor.GREEN:
-            self.r = self.b = 0
-            self.g = 255
-        if config["color"] == Config.LightColor.YELLOW:
-            self.r = self.g = 255
-            self.b = 0
-        if config["color"] == Config.LightColor.WHITE:
-            self.r = self.g = self.b = 0
-        if config["color"] == Config.LightColor.BLUE:
-            self.r = self.g = 0
-            self.b = 255
-
+        self.color = config["color"]
+        self.logger.info("Color [{}]".format(self.color))
         self.brightness = 1.0
         if "brightness" in config:
             self.brightness = config["brightness"]
         self.logger.info("Brightness [{}]".format(self.brightness))
 
     def on(self):
-        self.logger.info("Solid Light ON r={} g={} b={}".format(self.r, self.g, self.b))
+        self.logger.info("Solid Light ON color=[{}]".format(self.color))
         blinkt.clear()
-        blinkt.set_all(self.r, self.g, self.b, self.brightness)
+        # for i in range(7):
+        #     blinkt.set_pixel(i + 1, self.r, self.g, self.b, self.brightness)
+        # blinkt.set_all(self.r, self.g, self.b, self.brightness)
+        # rgb = self.color.rgb
+        rgb = [int(x * 255) for x in self.color.rgb]
+        blinkt.set_all(rgb[0], rgb[1], rgb[2], self.brightness)
         blinkt.show()
         pass
 

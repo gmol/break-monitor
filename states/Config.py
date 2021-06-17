@@ -1,9 +1,11 @@
 from enum import Enum
+from colour import Color
 
-REST_TIME = 45
-OVERTIME = 1 * 60
+REST_TIME = 5 * 60
+OVERTIME = 25 * 60
 
 IS_DEBUG = False
+
 
 class Activity(Enum):
     IDLE = 1
@@ -11,11 +13,11 @@ class Activity(Enum):
 
 
 class LightColor(Enum):
-    RED = 1
-    GREEN = 2
-    WHITE = 3
-    YELLOW = 4
-    BLUE = 5
+    RED = Color("red")
+    GREEN = Color("green")
+    WHITE = Color("white")
+    YELLOW = Color("yellow")
+    BLUE = Color("blue")
 
 
 class LightEffect(Enum):
@@ -25,3 +27,41 @@ class LightEffect(Enum):
     SOLID_WHITE = 4
     SOLID_BLUE = 5
     BLINKING = 6
+
+class LightBrightness(Enum):
+    MAX = 1.0
+    MIN = 0.05
+
+detection_strategy = {
+    "AverageDistance" : {
+        "observation_window": 15,   # seconds
+        "distance_threshold": 80,   # cm
+    }
+}
+
+light_config = {
+    LightEffect.SOLID_WHITE: {
+        "color": LightColor.WHITE.value,
+        "brightness": LightBrightness.MIN.value
+    },
+    LightEffect.SOLID_RED: {
+        "color": LightColor.RED.value,
+        "brightness": LightBrightness.MAX.value
+    },
+    LightEffect.SOLID_GREEN: {
+        "color": LightColor.GREEN.value,
+        "brightness": LightBrightness.MAX.value
+    },
+    LightEffect.SOLID_YELLOW: {
+        "color": LightColor.YELLOW.value,
+        "brightness": LightBrightness.MIN.value
+    },
+    LightEffect.SOLID_BLUE: {
+        "color": LightColor.BLUE.value,
+        "brightness": LightBrightness.MIN.value
+    },
+    LightEffect.SOLID_WHITE: {
+        "color": LightColor.WHITE.value,
+        "brightness": LightBrightness.MIN.value
+    },
+}

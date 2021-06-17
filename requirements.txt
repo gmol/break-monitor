@@ -1,3 +1,4 @@
+colour==0.1.5
 grove.py==0.6
 blinkt==0.1.2
 gpiozero==1.6.2

@@ -2,6 +2,7 @@ import logging
 from abc import ABC
 
 # from states import SolidLight
+from states import Config
 from states.Config import LightEffect
 from states.Config import LightColor
 from pprint import pprint
@@ -21,22 +22,20 @@ class LightController(ABC):
         # self.logger.info(f"Light effect ${effect}, config ${config}")
         if self.currentEffect != effect:
             self.currentEffect = effect
-            if effect == LightEffect.SOLID_GREEN:
-                self.light = SolidLight({
-                    "color": LightColor.GREEN,
-                    "brightness": 0.05
-                })
-            elif effect == LightEffect.SOLID_YELLOW:
-                self.light = SolidLight({
-                    "color": LightColor.YELLOW,
-                    "brightness": 0.05
-                })
-            elif effect == LightEffect.SOLID_WHITE:
-                self.light = SolidLight({"color": LightColor.WHITE})
-            elif effect == LightEffect.SOLID_BLUE:
-                self.light = SolidLight({"color": LightColor.BLUE})
-            else:
-                self.light = SolidLight({"color": LightColor.RED})
+            light_config = Config.light_config[self.currentEffect]
+            self.logger.info("Light Config[{}]".format(light_config))
+            self.logger.info("Light Config color[{}]".format(light_config["color"]))
+            self.logger.info("Light Config brightness [{}]".format(light_config["brightness"]))
+            # if effect == LightEffect.SOLID_GREEN:
+            self.light = SolidLight(light_config)
+            # elif effect == LightEffect.SOLID_YELLOW:
+            #     self.light = SolidLight(Config.light_config[LightEffect.SOLID_YELLOW])
+            # elif effect == LightEffect.SOLID_WHITE:
+            #     self.light = SolidLight(Config.light_config[LightEffect.SOLID_WHITE])
+            # elif effect == LightEffect.SOLID_BLUE:
+            #     self.light = SolidLight(Config.light_config[LightEffect.SOLID_BLUE])
+            # else:
+            #     self.light = SolidLight(Config.light_config[LightEffect.SOLID_RED])
             self.light.on()
         pass
 

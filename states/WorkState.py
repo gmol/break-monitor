@@ -24,5 +24,5 @@ class WorkState(State):
             self.logger.info("----->  OVERTIME turn the alarm on!")
             self.context.light_on(LightEffect.SOLID_RED)
         else:
-            self.logger.info("----->  Working time!")
-            self.context.light_on(LightEffect.SOLID_BLUE)
+            self.logger.info("----->  Working time! Timer[{}]".format(round(self.context.get_current_time() - self.timer)))
+            # self.context.light_on(LightEffect.SOLID_BLUE)
