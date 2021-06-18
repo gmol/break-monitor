@@ -27,10 +27,14 @@ class LightEffect(Enum):
     SOLID_WHITE = 4
     SOLID_BLUE = 5
     BLINKING = 6
+    SOLID_SELECTED_BLUE = 7
+    SOLID_ARBITRARY = 8
+
 
 class LightBrightness(Enum):
     MAX = 1.0
     MIN = 0.05
+
 
 detection_strategy = {
     "AverageDistance" : {
@@ -64,4 +68,17 @@ light_config = {
         "color": LightColor.WHITE.value,
         "brightness": LightBrightness.MIN.value
     },
+    LightEffect.SOLID_ARBITRARY: {
+        "brightness": LightBrightness.MIN.value,
+        "LEDs": [
+            LightColor.WHITE,
+            None,
+            LightColor.WHITE,
+            None,
+            LightColor.WHITE,
+            None,
+            LightColor.WHITE,
+            None
+        ]
+    }
 }

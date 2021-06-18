@@ -2,7 +2,7 @@ import logging
 import socket
 
 
-def get_ip_address() -> str:
+def get_ip_address():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     try:
         s.connect(("8.8.8.8", 80))
@@ -15,13 +15,13 @@ def get_ip_address() -> str:
     return ip_address
 
 
-def int_to_bin_list(number: int) -> list[int]:
+def int_to_bin_list(number: int):
     return list(reversed([int(x) for x in list('{0:0b}'.format(number))]))
 
 
-def get_last_ip_number_in_bin_array() -> list[int]:
+def get_last_ip_number_in_bin_array():
     ip_address = get_ip_address()
     last_ip_address_number = ip_address.split('.')[-1]
-    return int_to_bin_list(last_ip_address_number)
+    return int_to_bin_list(int(last_ip_address_number))
 
 

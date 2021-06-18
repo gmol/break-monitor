@@ -28,8 +28,8 @@ class Context:
         # self.logger.debug(f"Update activity ${activity}")
         self.state.evaluate(activity)
 
-    def light_on(self, light_mode):
-        self.light_controller.on(light_mode)
+    def light_on(self, light_mode, extra_config=None):
+        self.light_controller.on(light_mode, extra_config)
 
     def light_off(self):
         self.light_controller.off()

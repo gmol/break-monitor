@@ -4,6 +4,7 @@ __version__='0.1.0'
 
 # logging.basicConfig(encoding='utf-8', level=logging.DEBUG, format='%(asctime)s %(name)s[%(levelname)s]: %(message)s')
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(name)s[%(levelname)s]: %(message)s')
+# "%(name)s: %(message)s [ %(filename)s %(lineno)d ]"
 # logging.basicConfig(encoding='utf-8', level=logging.DEBUG)
 # root_logger= logging.getLogger()
 # root_logger.setLevel(logging.DEBUG) # or whatever
