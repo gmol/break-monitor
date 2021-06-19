@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="685px" preserveAspectRatio="none" style="width:512px;height:685px;background:#FFFFFF;" version="1.1" viewBox="0 0 512 685" width="512px" zoomAndPan="magnify"><defs><filter height="300%" id="fdttjenlu7y39" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="237" x="131" y="16.708">Overview Of Components</text><!--MD5=[9543237dd673d14adcddcaf47447f836]
+cluster sm--><rect fill="#FFFFFF" filter="url(#fdttjenlu7y39)" height="313" style="stroke:#000000;stroke-width:1.5;" width="187" x="95.5" y="360.9531"/><line style="stroke:#000000;stroke-width:1.5;" x1="95.5" x2="282.5" y1="381.25" y2="381.25"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="117" x="130.5" y="375.9482">State Machine</text><!--MD5=[096c315a72979d8283b02d740511e11a]
+entity idle--><rect fill="#FEFECE" filter="url(#fdttjenlu7y39)" height="36.2969" style="stroke:#A80036;stroke-width:1.5;" width="86" x="145.5" y="403.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="66" x="155.5" y="426.9482">IdleState</text><!--MD5=[64a9df9efdb85e10fd4da2b3e755ab03]
+entity work--><rect fill="#FEFECE" filter="url(#fdttjenlu7y39)" height="36.2969" style="stroke:#A80036;stroke-width:1.5;" width="98" x="136.5" y="613.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="78" x="146.5" y="636.9482">WorkState</text><!--MD5=[ac40dd4c03671801018102ca7be9c337]
+entity rest--><rect fill="#FEFECE" filter="url(#fdttjenlu7y39)" height="36.2969" style="stroke:#A80036;stroke-width:1.5;" width="93" x="165" y="516.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="73" x="175" y="539.9482">RestState</text><!--MD5=[fd653a43105205fc53e935418e72fe3b]
+entity context--><rect fill="#FEFECE" filter="url(#fdttjenlu7y39)" height="36.2969" style="stroke:#A80036;stroke-width:1.5;" width="79" x="190" y="253.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="59" x="200" y="276.9482">Context</text><!--MD5=[012b2df6ae9eb64e3596d6b602232baf]
+entity detector--><rect fill="#FEFECE" filter="url(#fdttjenlu7y39)" height="36.2969" style="stroke:#A80036;stroke-width:1.5;" width="124" x="167.5" y="140.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="104" x="177.5" y="163.9482">WorkDetector</text><!--MD5=[fb3bcafbab37ea0007cfa65e129ab2d9]
+entity monitor--><rect fill="#FEFECE" filter="url(#fdttjenlu7y39)" height="36.2969" style="stroke:#A80036;stroke-width:1.5;" width="125" x="7" y="140.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="105" x="17" y="163.9482">SensorMonitor</text><!--MD5=[7468467f3b6b392f1d176d828c753b77]
+entity db--><rect fill="#FEFECE" filter="url(#fdttjenlu7y39)" height="32.2969" style="stroke:#A80036;stroke-width:1.5;" width="121" x="22" y="257.9531"/><rect fill="#FEFECE" height="32.2969" style="stroke:#A80036;stroke-width:1.5;" width="121" x="18" y="253.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="105" x="26" y="274.9482">Measurements</text><!--MD5=[6ce9c9777516fb25e3ce5345bc08e6a3]
+entity strategies--><rect fill="#FEFECE" filter="url(#fdttjenlu7y39)" height="32.2969" style="stroke:#A80036;stroke-width:1.5;" width="181" x="319" y="520.9531"/><rect fill="#FEFECE" height="32.2969" style="stroke:#A80036;stroke-width:1.5;" width="181" x="315" y="516.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="165" x="323" y="537.9482">Light Effect Strategies</text><!--MD5=[a6fd415a5c5abcde107a4b1e52d6a5ff]
+entity light--><rect fill="#FEFECE" filter="url(#fdttjenlu7y39)" height="36.2969" style="stroke:#A80036;stroke-width:1.5;" width="57" x="379" y="403.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="37" x="389" y="426.9482">Light</text><!--MD5=[727c1040af9be188ab17d19c49f9ac10]
+entity ds--><rect fill="#FEFECE" filter="url(#fdttjenlu7y39)" height="32.2969" style="stroke:#A80036;stroke-width:1.5;" width="164" x="149.5" y="31.9531"/><rect fill="#FEFECE" height="32.2969" style="stroke:#A80036;stroke-width:1.5;" width="164" x="145.5" y="27.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="148" x="153.5" y="48.9482">DetectionStrategies</text><!--MD5=[f59b8771e59b405011b22d96c7b095e1]
+link idle to work--><path d="M177.02,439.9581 C161.818,464.5641 137.98,511.6761 147.5,552.9531 C152.163,573.1721 162.81,594.2161 171.652,609.3425 " fill="none" id="idle-to-work" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="174.329,613.8396,173.1628,604.0601,171.7716,609.5432,166.2884,608.152,174.329,613.8396" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[c74601517772a8f2f49ecf812f9b5ae1]
+link rest to work--><path d="M205.352,558.4181 C201.196,573.6021 195.732,593.5651 191.589,608.7039 " fill="none" id="rest-work" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="190.239,613.6391,196.4734,606.0146,191.5592,608.8166,188.7573,603.9024,190.239,613.6391" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="206.731,553.3771,200.497,561.0019,205.4111,558.1998,208.2132,563.1138,206.731,553.3771" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[9505f919587e92939a5c9f6243ccf6f7]
+reverse link idle to rest--><path d="M193.157,445.4261 C197.523,466.4991 203.959,497.5571 207.931,516.7311 " fill="none" id="idle-backto-rest" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="192.094,440.2971,190.003,449.9215,193.1084,445.1932,197.8367,448.2985,192.094,440.2971" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[c0a6b4310ba9e48ca54533fd4e3dc29b]
+link context to light--><path d="M269.118,280.1321 C295.822,286.6801 330.435,298.6931 354.5,319.9531 C378.645,341.2841 393.507,376.2951 401.133,398.9831 " fill="none" id="context-to-light" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="402.74,403.9081,403.7498,394.1112,401.1885,399.1549,396.1447,396.5936,402.74,403.9081" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="51" x="370.5" y="333.02">controls</text><!--MD5=[a1455b17eb0bf174d8135224708325cf]
+link light to strategies--><path d="M407.5,440.2971 C407.5,459.5211 407.5,490.5831 407.5,511.6141 " fill="none" id="light-to-strategies" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="407.5,516.7311,411.5,507.7311,407.5,511.7311,403.5,507.7311,407.5,516.7311" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="30" x="408.5" y="483.02">uses</text><!--MD5=[3158aa2fc25373ae78e89c9d273b096d]
+link context to sm--><path d="M189.978,284.0801 C151.947,295.1831 99.3525,311.7381 93.5,319.9531 C80.6176,338.0351 82.8388,362.7849 88.4167,383.2584 C89.8112,388.3768 91.4155,393.2279 93.046,397.6407 C93.8613,399.8471 94.6831,401.944 95.4886,403.9099 " fill="none" id="context-to-sm" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="95.4886,403.9099,95.7778,394.0653,93.5929,399.2832,88.3751,397.0983,95.4886,403.9099" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="91" x="94.5" y="333.02">changes state</text><!--MD5=[a61f6ea0059abf53abe264a1c11a37d2]
+reverse link context to sm--><path d="M222.13,294.7161 C216.023,309.2051 205.831,327.2941 190.5,336.9531 C175.571,346.3591 124.002,332.5011 111.5,344.9531 C108.586,347.8556 106.2604,351.1696 104.4235,354.7529 C103.5051,356.5445 102.7088,358.4034 102.0222,360.3119 C101.9792,360.4312 101.9368,360.5507 101.8947,360.6703 " fill="none" id="context-backto-sm" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="224.047,289.9581,216.9738,296.8116,222.1787,294.596,224.3944,299.8009,224.047,289.9581" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="136" x="209.5" y="333.02">requests light effects</text><!--MD5=[1b7a30fb74ccebd50856e410730919b4]
+link monitor to db--><path d="M67.4251,177.1461 C66.2363,190.0771 65.3617,208.2011 67.5,223.9531 C68.6104,232.1321 70.7606,240.8991 72.9976,248.6191 " fill="none" id="monitor-to-db" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="74.5485,253.7761,75.787,244.0055,73.1085,248.988,68.126,246.3095,74.5485,253.7761" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="39" x="68.5" y="220.02">writes</text><!--MD5=[933e6ff5cc4c80c8c9fd24e413f3f5aa]
+reverse link detector to db--><path d="M202.498,180.0681 C174.275,201.0941 130.452,233.7401 103.7263,253.6501 " fill="none" id="detector-backto-db" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="206.545,177.0531,196.9379,179.2218,202.5353,180.0401,201.717,185.6374,206.545,177.0531" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="36" x="165.5" y="220.02">reads</text><!--MD5=[f350570698ed025f913538a23d7e4591]
+link detector to context--><path d="M229.5,177.2971 C229.5,196.5211 229.5,227.5831 229.5,248.6141 " fill="none" id="detector-to-context" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="229.5,253.7311,233.5,244.7311,229.5,248.7311,225.5,244.7311,229.5,253.7311" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="172" x="230.5" y="220.02">updates( IDLE / WORKING )</text><!--MD5=[e6eff07ee0ff5ab19d2e7c64b298642c]
+reverse link ds to detector--><path d="M229.5,69.4261 C229.5,90.4991 229.5,121.5571 229.5,140.7311 " fill="none" id="ds-backto-detector" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="229.5,64.2971,225.5,73.2971,229.5,69.2971,233.5,73.2971,229.5,64.2971" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="30" x="230.5" y="107.02">uses</text><!--MD5=[68054721d1cb0b376e35fa0ef62e82c5]
+@startuml
+title Overview Of Components
+
+card "State Machine" as sm {
+    agent IdleState as idle
+    agent WorkState as work
+    agent RestState as rest
+    idle - -> work
+    rest <- -> work
+    idle <- - rest
+}
+agent Context as context
+agent WorkDetector as detector
+agent SensorMonitor as monitor
+collections Measurements as db
+collections "Light Effect Strategies" as strategies
+agent Light as light
+collections DetectionStrategies as ds
+
+context - -> light : controls
+light - -> strategies : uses
+context - -> sm : changes state
+monitor - -> db : writes
+detector <- - db : reads
+detector - -> context: updates( IDLE / WORKING )
+context <- - sm : requests light effects
+ds <- - detector : uses
+@enduml
+
+PlantUML version 1.2021.7(Sun May 23 12:40:07 UTC 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
