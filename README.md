@@ -76,104 +76,22 @@ Activate venv and run the following commands:
 
 ## TODO
 
-- [ ] Update/restore get_distance method by adding while loop and not returning None(s) 
+- [ ] Update/restore get_distance method by adding while loop and not returning None(s)
 - [ ] Remove color enum
 - [ ] Fix IP address light brightness
 - [ ] Add workflow to generate plantuml files
 
-```plantuml
-@startmindmap
-<style>
-mindmapDiagram {
-  ' node {
-  '   BackgroundColor lightGreen
-  ' }
-  ' boxless {
-  '   FontColor darkgreen
-  ' }
-    :depth(1) {
-      BackGroundColor lightgreen
-    }
-    :depth(2) {
-      BackGroundColor lightblue
-    }
-}
-</style>
+![todo](./docs/uml/todo-mindmap.svg)
 
-*_ breakalert
+## Components
 
-++ configuration
-
-+++ restore default configuration
-
-+++ measurements
-++++ provide a better measurement sample cleanup\ne.g. wait for 1k samples and delete older than 5min
-++++ default strategy
-++++ strategy configuration
-+++++ distance strategy
-++++++ distance
-+++++ ... strategy
-
-+++  duration
-++++ rest duration
-++++ work duration
-
-+++   light
-++++  effect configuration
-+++++ solid light
-++++++ color
-++++++ brightness
-+++++ blinking light
-++++++ color
-++++++ brightness
-++++++ blink frequency
-++++  state effects 
-+++++ work effect
-+++++ rest effect
-+++++ idle effect
-++++  general brightness
-
--- testing
-
--- command line\nconfiguration
---- production/debug
---- measurement strategy
-
-@endmindmap
-```
+![compenents](./docs/uml/compenents.svg)
 
 ## Configuration
 
-```plantuml
-@startjson
-{
-   "light":{
-     "effect configuration":{},
-     "state effects": {
-       "work effect": "blinking light",
-       "rest effect": "solid light",
-       "idle effect": ""
-     },
-     "general brightness": "1.0"
-   },
-   "duration": {
-     "work" : "25",
-     "rest" : "5"
-   },
-   "measurements": {
-     "default strategy" : "distanceStrategy",
-     "strategy configuration": {
-       "distanceStrategy" : {
-         "distance" : 150
-       }
-     }
-   }
-}
-@endjson
-```
+![configuration](./docs/uml/configuration.svg)
 
 ## Cancelable repetitive task
-
 
 | Note                       | Link                                                                                                             |
 | -------------------------- | ---------------------------------------------------------------------------------------------------------------- |

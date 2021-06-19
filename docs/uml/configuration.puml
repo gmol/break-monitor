@@ -1,0 +1,25 @@
+@startjson
+{
+   "light":{
+     "effect configuration":{},
+     "state effects": {
+       "work effect": "blinking light",
+       "rest effect": "solid light",
+       "idle effect": ""
+     },
+     "general brightness": "1.0"
+   },
+   "duration": {
+     "work" : "25",
+     "rest" : "5"
+   },
+   "measurements": {
+     "default strategy" : "distanceStrategy",
+     "strategy configuration": {
+       "distanceStrategy" : {
+         "distance" : 150
+       }
+     }
+   }
+}
+@endjson

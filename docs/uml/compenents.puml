@@ -1,6 +1,6 @@
 @startuml
 
-title Components
+title Overview Of Components
 
 card "State Machine" as sm {
     agent IdleState as idle
