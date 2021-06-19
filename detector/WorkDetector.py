@@ -1,6 +1,7 @@
 from detector.AverageDistance import AverageDistance
 from typing import List
 
+from detector.DistanceThresholdCounter import DistanceThresholdCounter
 from detector.Sample import Sample
 from light.LightController import LightController
 from states.Config import Activity
@@ -21,7 +22,7 @@ class WorkDetector:
         self.clean_up()
         pass
 
-    def detect(self, strategy=AverageDistance()):
+    def detect(self, strategy=DistanceThresholdCounter()):
         if len(self.measurements) > 0:
             work_detected = strategy.detect(self.measurements)
             if work_detected:

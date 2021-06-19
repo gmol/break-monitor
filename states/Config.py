@@ -37,17 +37,17 @@ class LightBrightness(Enum):
 
 
 detection_strategy = {
-    "AverageDistance" : {
+    "AverageDistance": {
         "observation_window": 15,   # seconds
+        "distance_threshold": 80,   # cm
+    },
+    "DistanceThresholdCounter": {
+        "observation_window": 30,   # seconds
         "distance_threshold": 80,   # cm
     }
 }
 
 light_config = {
-    LightEffect.SOLID_WHITE: {
-        "color": LightColor.WHITE.value,
-        "brightness": LightBrightness.MIN.value
-    },
     LightEffect.SOLID_RED: {
         "color": LightColor.RED.value,
         "brightness": LightBrightness.MAX.value

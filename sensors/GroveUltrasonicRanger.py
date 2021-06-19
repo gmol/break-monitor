@@ -61,5 +61,5 @@ class GroveUltrasonicRanger(object):
             if d and d < 500:
                 # latency in milliseconds
                 latency = round((time.time_ns() - start_time)/1e6)
-                self.logger.debug("Distance measure latency [{}]".format(latency))
+                self.logger.debug("Distance measure latency [{}ms]".format(latency))
                 return d
