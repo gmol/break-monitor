@@ -78,7 +78,8 @@ Activate venv and run the following commands:
 
 - [ ] Update/restore get_distance method by adding while loop and not returning None(s) 
 - [ ] Remove color enum
-- [ ] Fix IP address light brightness 
+- [ ] Fix IP address light brightness
+- [ ] Add workflow to generate plantuml files
 
 ```plantuml
 @startmindmap
