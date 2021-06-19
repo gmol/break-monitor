@@ -15,9 +15,9 @@ class IdleState(State):
         self.logger.info("* IdleState created")
         self.ip_bits = get_last_ip_number_in_bin_array()
         self.effect_config = Config.light_config[LightEffect.SOLID_ARBITRARY]
-        leds = [LightColor.WHITE for i in range(8)]
+        leds = [LightColor.YELLOW for i in range(8)]
         for i in range(len(self.ip_bits)):
-            if i == 1:
+            if 1 == self.ip_bits[i]:
                 leds[i] = LightColor.BLUE
 
         self.effect_config["LEDs"] = leds

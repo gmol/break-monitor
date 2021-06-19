@@ -69,7 +69,7 @@ light_config = {
         "brightness": LightBrightness.MIN.value
     },
     LightEffect.SOLID_ARBITRARY: {
-        "brightness": LightBrightness.MIN.value,
+        "brightness": LightBrightness.MAX.value,
         "LEDs": [
             LightColor.WHITE,
             None,
