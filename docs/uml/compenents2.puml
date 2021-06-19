@@ -1,0 +1,30 @@
+@startuml
+
+title Components2
+
+card "State Machine" as sm {
+    agent IdleState as idle
+    agent WorkState as work
+    agent RestState as rest
+    idle --> work
+    rest <--> work
+    idle <-- rest
+}
+agent Context as context
+agent WorkDetector as detector
+agent SensorMonitor as monitor
+collections Measurements as db
+collections "Light Effect Strategies" as strategies
+agent Light as light
+collections DetectionStrategies as ds
+
+context --> light : controls
+light --> strategies : uses
+context --> sm : changes state
+monitor --> db : writes
+detector <-- db : reads
+detector --> context: updates( IDLE / WORKING )
+context <-- sm : requests light effects
+ds <-- detector : uses
+
+@enduml
