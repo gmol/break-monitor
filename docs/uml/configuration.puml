@@ -1,23 +1,38 @@
 @startjson
 {
    "light":{
-     "effect configuration":{},
-     "state effects": {
-       "work effect": "blinking light",
-       "rest effect": "solid light",
-       "idle effect": ""
+     "effect configuration":{
+        "solid red light": {
+            "color": "red",
+            "brightness": 0.05
+        },
+        "blinking red light": {
+            "color": "red",
+            "brightness": 0.05,
+            "frequency [HZ]": 2
+        }
      },
-     "general brightness": "1.0"
+     "state effects": {
+       "work effect": [
+        "solid red light",
+        "blinking red light",
+        "fast blinking red light"
+       ],
+       "rest effect": ["green solid light"],
+       "idle effect": ["IP solid light"]
+     },
+     "general brightness": 1.0
    },
    "duration": {
-     "work" : "25",
-     "rest" : "5"
+     "work" : 25,
+     "rest" : 5
    },
    "measurements": {
      "default strategy" : "distanceStrategy",
      "strategy configuration": {
        "distanceStrategy" : {
-         "distance" : 150
+         "distance [cm]" : 150,
+         "observation window [seconds]" : 15
        }
      }
    }
