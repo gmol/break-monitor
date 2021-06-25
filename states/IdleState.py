@@ -1,5 +1,7 @@
 import logging
+import sys
 from socket import socket
+from time import sleep
 
 from helpers.ip_address import get_last_ip_number_in_bin_array
 from states import Config
@@ -9,11 +11,23 @@ from states.State import State
 
 class IdleState(State):
 
+    NUMBER_OF_TRIES = 30
+
     def __init__(self, context):
         super().__init__(context)
         self.logger = logging.getLogger("IdleState")
         self.logger.info("* IdleState created")
-        self.ip_bits = get_last_ip_number_in_bin_array()
+        counter = 0
+        while counter < self.NUMBER_OF_TRIES:
+            try:
+                sleep(1)
+                self.ip_bits = get_last_ip_number_in_bin_array()
+                break
+            except:
+                counter += 1
+                e = sys.exc_info()[0]
+                self.logger.info('Get IP exception: {}'.format(e))
+
         self.effect_config = Config.light_config[LightEffect.SOLID_ARBITRARY]
         leds = [LightColor.YELLOW for i in range(8)]
         for i in range(len(self.ip_bits)):

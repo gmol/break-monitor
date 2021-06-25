@@ -17,7 +17,7 @@ class SensorMonitor:
     def monitor(self):
         while True:
             distance = self.ranger.get_distance()
-            self.logger.info("Distance[{}]".format(distance))
+            self.logger.info("Distance[{}]".format(round(distance)))
             if distance:
                 timestamp = round(time.time())  # in seconds [int]
                 sample = Sample(timestamp, distance)

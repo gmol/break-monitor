@@ -15,7 +15,7 @@ agent WorkDetector as detector
 agent SensorMonitor as monitor
 collections Measurements as db
 collections "Light Effect Strategies" as strategies
-agent Light as light
+agent "Light Controller" as light
 collections DetectionStrategies as ds
 
 context --> light : controls

@@ -80,7 +80,13 @@ Activate venv and run the following commands:
 - [ ] Remove color enum
 - [ ] Fix IP address light brightness
 - [ ] Add workflow to generate plantuml files
-
+- [ ] Go back to idle when Workstate was very short. For example <5min
+- [ ] Add movement detection for Distant Threshold Detection Strategy
+  - when probability 1.0, normalize distance values and check how the distance has been changed
+- [ ] Statistics (how much time in front of computer in total so far during the day)
+- [ ] Last 3 LEDs to count break time
+  
+ 
 ![todo](./docs/uml/todo-mindmap.svg)
 
 ## Components

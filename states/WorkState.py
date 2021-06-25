@@ -21,8 +21,10 @@ class WorkState(State):
             # Create Break state and switch
             self.context.change_state(RestState(self.context, self))
         elif self.timer + OVERTIME < self.context.get_current_time():
-            self.logger.info("----->  OVERTIME turn the alarm on!")
+            self.logger.info("----->  OVERTIME turn the alarm on! timer[{}], timer+OVERTIME[{}], current time[{}]"
+                             .format(self.timer, self.timer + OVERTIME, self.context.get_current_time()))
             self.context.light_on(LightEffect.SOLID_RED)
         else:
-            self.logger.info("----->  Working time! Timer[{}]".format(round(self.context.get_current_time() - self.timer)))
+            self.logger.info(
+                "----->  Working time! Timer[{}]".format(round(self.context.get_current_time() - self.timer)))
             # self.context.light_on(LightEffect.SOLID_BLUE)

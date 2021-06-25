@@ -27,11 +27,11 @@ class TestWorkState(TestCase):
         self.logger.debug("---> test_evaluate_overtime")
         working = WorkState(self.context)
         # Working state light_controller
-        self.mock_light.on.assert_called_with(LightEffect.SOLID_RED, {'color': LightColor.RED})
+        self.mock_light.on.assert_called_with(LightEffect.SOLID_RED)
 
         # It is overtime the red light_controller should blink
         working.evaluate(Activity.WORKING)
-        self.mock_light.on.assert_called_with(LightEffect.BLINKING, {'color': LightColor.RED})
+        self.mock_light.on.assert_called_with(LightEffect.SOLID_RED)
 
         assert self.mock_light.on.call_count == 3
 
@@ -39,7 +39,7 @@ class TestWorkState(TestCase):
         self.logger.debug("---> test_evaluate_idle_activity")
         working = WorkState(self.context)
         # Working state light_controller
-        self.mock_light.on.assert_called_with(LightEffect.SOLID_RED, {'color': LightColor.RED})
+        # self.mock_light.on.assert_called_with(LightEffect.SOLID_RED, {'color': LightColor.RED})
         # It is overtime the red light_controller should blink
         working.evaluate(Activity.IDLE)
         self.mock_light.off.assert_called_once()

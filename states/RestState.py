@@ -35,3 +35,4 @@ class RestState(State):
             pass
         self.logger.info("Activity[{}] resting. Timer[{}]"
                          .format(activity, round(self.context.get_current_time() - self.timer)))
+        self.context.light_on(LightEffect.SOLID_GREEN)

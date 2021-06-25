@@ -24,7 +24,8 @@ class DistanceThresholdCounter(DetectionStrategy):
         recent_samples = list(filter(
             lambda s: s.timestamp >= current_time_in_sec - self.OBSERVATION_WINDOW, measurements
         ))
-        # if len(recent_samples) == 0:
+        # This will give initial time to display IP address and basically better estimation
+        # if len(recent_samples) < 30:
         #     return False
         recent_distance_values = map(lambda s: s.distance, recent_samples)
         recent_distance_square_filter = map(lambda s: 1 if s < self.DISTANCE_THRESHOLD else 0, recent_distance_values)

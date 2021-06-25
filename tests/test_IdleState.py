@@ -13,13 +13,14 @@ class TestIdleState(TestCase):
         self.mock_light = Mock(spec=LightController)
         self.context = Context(self.mock_light)
         # Idle state light_controller
-        self.mock_light.on.assert_called_with(LightEffect.SOLID_RED, {'color': LightColor.WHITE})
+        # self.mock_light.on.assert_called_with(LightEffect.SOLID_RED, {'color': LightColor.WHITE})
         assert self.mock_light.on.call_count == 1
 
     def test_evaluate_working(self):
         idle_state = IdleState(self.context)
         idle_state.evaluate(Activity.WORKING)
         self.mock_light.off.assert_called_once()
+        assert self.context.change_state.assert_called_with()
         assert isinstance(self.context.state, WorkState)
 
     def test_evaluate_idle(self):

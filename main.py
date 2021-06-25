@@ -1,6 +1,7 @@
 import sys
 import argparse
 import logging
+from time import sleep
 
 from detector.WorkDetector import WorkDetector
 from sensors.FakeSonar import FakeSonar
