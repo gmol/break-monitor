@@ -19,6 +19,30 @@ network={
 }
 ```
 
+#### Setting up more than one wireless network
+
+Source: <https://raspberrypi.stackexchange.com/questions/11631/how-to-setup-multiple-wifi-networks>
+
+Edit /etc/wpa_supplicant/wpa_supplicant.conf and add id_str="home" under the schools wpa info and id_str="work".
+
+```properties
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+country=IE
+
+network={
+    ssid="HOME NETWORK NAME"
+    psk="HOME PASSWORD"
+    id_str="home"
+}
+
+network={
+    ssid="WORK NETWORK NAME"
+    psk="WORK PASSWORD"
+    id_str="work"
+}
+```
+
 ### Enable SSH on a headless Raspberry Pi (add file to SD card on another machine)
 
 Source: <https://www.raspberrypi.org/documentation/remote-access/ssh/README.md>
