@@ -23,7 +23,7 @@ network={
 
 Source: <https://raspberrypi.stackexchange.com/questions/11631/how-to-setup-multiple-wifi-networks>
 
-Edit /etc/wpa_supplicant/wpa_supplicant.conf and add id_str="home" under the schools wpa info and id_str="work".
+Edit `/etc/wpa_supplicant/wpa_supplicant.conf` and add id_str="home" under the schools wpa info and id_str="work".
 
 ```properties
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
