@@ -1,18 +1,18 @@
-from detector.AverageDistance import AverageDistance
-from typing import List
+import logging
 
 from detector.DistanceThresholdCounter import DistanceThresholdCounter
 from detector.Sample import Sample
-from light.LightController import LightController
+
 from states.Config import Activity
 from states.Context import Context
-from states.TimeProvider import TimeProvider
+
 
 
 class WorkDetector:
     measurements = []
 
     def __init__(self, context: Context):
+        self.logger = logging.getLogger("WorkDetector")
         self.context = context
         pass
 
@@ -29,9 +29,10 @@ class WorkDetector:
                 self.context.update_action(Activity.WORKING)
             else:
                 self.context.update_action(Activity.IDLE)
-        return False
+        pass
 
     def clean_up(self):
         if len(self.measurements) > 1000:
             # TODO provide a better cleanup
             del self.measurements[0]
+

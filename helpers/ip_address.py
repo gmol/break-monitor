@@ -20,7 +20,9 @@ def int_to_bin_list(number: int):
 
 
 def get_last_ip_number_in_bin_array():
+    logger = logging.getLogger("ip_address")
     ip_address = get_ip_address()
+    logger.info("IP ADDRESS: {}".format(ip_address))
     last_ip_address_number = ip_address.split('.')[-1]
     return int_to_bin_list(int(last_ip_address_number))
 

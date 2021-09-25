@@ -15,8 +15,8 @@ class DistanceThresholdCounter(DetectionStrategy):
     Samples = List[Sample]
 
     def __init__(self):
-        self.logger = logging.getLogger("AverageDistance")
-        self.logger.info("* AverageDistance observation_window[{}] distance_threshold[{}]"
+        self.logger = logging.getLogger("DistanceThresholdCounter")
+        self.logger.info("* DistanceThresholdCounter observation_window[{}] distance_threshold[{}]"
                          .format(self.OBSERVATION_WINDOW, self.DISTANCE_THRESHOLD))
 
     def detect(self, measurements: Samples):
