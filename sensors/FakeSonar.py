@@ -1,10 +1,11 @@
 import logging
 import random
 
+from sensors.Sonar import Sonar
 from states import Config
 
 
-class FakeSonar:
+class FakeSonar(Sonar):
 
     counter = 0
 

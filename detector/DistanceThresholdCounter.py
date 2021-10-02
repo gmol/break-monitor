@@ -27,6 +27,12 @@ class DistanceThresholdCounter(DetectionStrategy):
         # This will give initial time to display IP address and basically better estimation
         # if len(recent_samples) < 30:
         #     return False
+
+        # No new samples means a distance measure failure assume there is no user at the desk
+        if len(recent_samples) < self.OBSERVATION_WINDOW / 4:
+            self.logger.warning("Distance measure failure assume there is no user at the desk")
+            return False
+
         recent_distance_values = map(lambda s: s.distance, recent_samples)
         recent_distance_square_filter = map(lambda s: 1 if s < self.DISTANCE_THRESHOLD else 0, recent_distance_values)
         average_distance = statistics.mean(recent_distance_square_filter)

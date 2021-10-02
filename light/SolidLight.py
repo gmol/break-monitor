@@ -34,11 +34,13 @@ class SolidLight(Light):
             for i in range(len(self.colors)):
                 if self.colors[i]:
                     rgb = [int(x * 255) for x in self.colors[i].value.rgb]
-                    if rgb[0]==255:
+                    # TODO I cannot remember what it is
+                    # TODO I think I know what it is - it is a temp brightness adjustment
+                    if rgb[0] == 255:
                         # TODO fix this. Change config
-                        blinkt.set_pixel(7-i, rgb[0], rgb[1], rgb[2], 0.05)
+                        blinkt.set_pixel(7 - i, rgb[0], rgb[1], rgb[2], 0.05)
                     else:
-                        blinkt.set_pixel(7-i, rgb[0], rgb[1], rgb[2], self.brightness)
+                        blinkt.set_pixel(7 - i, rgb[0], rgb[1], rgb[2], self.brightness)
         else:
             rgb = [int(x * 255) for x in self.colors[0].rgb]
             blinkt.set_all(rgb[0], rgb[1], rgb[2], self.brightness)

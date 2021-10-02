@@ -79,6 +79,21 @@ light_config = {
             None,
             LightColor.WHITE,
             None
+        ],
+        "ledConfig": [
+            {"color": LightColor.WHITE, "brightness": LightBrightness.MIN.value},
+            None,
+            {"color": LightColor.WHITE, "brightness": LightBrightness.MIN.value},
+            None,
+            {"color": LightColor.WHITE, "brightness": LightBrightness.MIN.value},
+            None,
+            {"color": LightColor.WHITE, "brightness": LightBrightness.MIN.value},
+            None
         ]
+    },
+    LightEffect.BLINKING: {
+        "color": LightColor.RED.value,
+        "brightness": LightBrightness.MAX.value,
+        "blinking": True
     }
 }

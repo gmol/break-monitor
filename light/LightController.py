@@ -21,6 +21,7 @@ class LightController(ABC):
     def on(self, effect=LightEffect.SOLID_RED, extra_config=None):
         if self.currentEffect != effect:
             self.currentEffect = effect
+            # SOLID_ARBITRARY is dynamically created that is why it need an extra config
             if self.currentEffect == Config.LightEffect.SOLID_ARBITRARY and extra_config:
                 light_config = extra_config
             else:

@@ -1,5 +1,6 @@
 import logging
 import time
+import atexit
 
 from light.LightController import LightController
 from states.Config import Activity
@@ -13,6 +14,7 @@ class Context:
         self.light_controller = light_controller
         self.state = IdleState(self)
         self.timeProvider = time_provider
+        atexit.register(self.cleanup)
 
     def change_state(self, state):
         self.logger.info(f"-----> Change state ${state}")
@@ -39,3 +41,7 @@ class Context:
             return time.time()
         else:
             return self.timeProvider.get_current_time()
+
+    def cleanup(self):
+        self.logger.info('Turn off the light.')
+        self.light_controller.off()

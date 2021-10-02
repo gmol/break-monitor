@@ -15,7 +15,7 @@ logging.basicConfig(
     # format='[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s',
     format='%(asctime)s %(name)+25s:%(lineno)-3d %(levelname)-6s %(message)s',
     handlers=[
-        RotatingFileHandler('./breakalert.log', maxBytes=500000, backupCount=5),
+        RotatingFileHandler('./breakalert.log', maxBytes=500000, backupCount=5)
         # consoleHandler
     ]
 )

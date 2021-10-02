@@ -39,6 +39,7 @@ if __name__ == '__main__':
                         help='Run project in DEBUG mode')
     args = parser.parse_args()
     if args.debug:
+        logger.info(">>>>> DEBUG mode <<<<<")
         Config.IS_DEBUG = True
         Config.REST_TIME = 3
         Config.OVERTIME = 5
@@ -48,11 +49,11 @@ if __name__ == '__main__':
 
     if 'win32' in sys.platform:
         logger.info(">>>>> WINDOWS environment <<<<<")
-        monitor = SensorMonitor(work_detector=WorkDetector(ctxt), ranger=FakeSonar())
+        monitor = SensorMonitor(work_detector=WorkDetector(ctxt), sonar=FakeSonar())
     else:
         logger.info(">>>>> PI environment <<<<<")
         from sensors.GroveUltrasonicRanger import GroveUltrasonicRanger
-        monitor = SensorMonitor(work_detector=WorkDetector(ctxt), ranger=GroveUltrasonicRanger())
+        monitor = SensorMonitor(work_detector=WorkDetector(ctxt), sonar=GroveUltrasonicRanger())
 
     print(f"OVERTIME [${Config.OVERTIME}] seconds and REST time [${Config.REST_TIME}] seconds")
 

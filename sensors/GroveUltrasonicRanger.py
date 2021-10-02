@@ -4,6 +4,8 @@ import time
 # import statistics
 from grove.gpio import GPIO
 
+from sensors.Sonar import Sonar
+
 _TIMEOUT1 = 1000
 _TIMEOUT2 = 10000
 
@@ -11,7 +13,7 @@ _TIMEOUT2 = 10000
 def usleep(x): return time.sleep(x / 1000000.0)
 
 
-class GroveUltrasonicRanger(object):
+class GroveUltrasonicRanger(Sonar):
     def __init__(self, pin=16):
         self.logger = logging.getLogger("GroveUltrasonicRanger")
         self.dio = GPIO(pin)
@@ -59,7 +61,7 @@ class GroveUltrasonicRanger(object):
             start_time = time.time_ns()
             d = self._get_distance()
             if d and d < 500:
-                # latency in milliseconds
+                # Check how long it takes to get a valid distance. latency in milliseconds
                 latency = round((time.time_ns() - start_time)/1e6)
-                self.logger.debug("Distance measure latency [{}ms]".format(latency))
+                self.logger.debug(f">>>-----> Distance [{round(d)}] and measure latency [{latency}ms]")
                 return d
