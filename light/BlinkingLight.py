@@ -16,10 +16,11 @@ from light.Light import Light
 class BlinkingLight(Light):
 
     LEDs = []
+    worker: Thread = None
+    stopThread = None
 
     def __init__(self, config={"color": Config.LightColor.RED}):
         self.logger = logging.getLogger("BlinkingLight")
-        self.turnOff = None
         self.logger.info("Blinking Light created{}".format(config))
 
         if "ledConfig" in config:
@@ -35,7 +36,7 @@ class BlinkingLight(Light):
     def on(self):
         self.logger.info("Solid Light ON color=[{}]".format(self.LEDs))
         blinkt.clear()
-        self.turnOff = self.call_repeatedly(0.1, self.effect)
+        self.stopThread = self.call_repeatedly(0.1, self.effect)
     pass
 
     def effect(self):
@@ -43,8 +44,6 @@ class BlinkingLight(Light):
         for i in range(len(self.LEDs)):
             if self.LEDs[i]:
                 rgb = [int(x * 255) for x in self.LEDs[i]['color'].rgb]
-                # TODO I cannot remember what it is
-                # TODO I think I know what it is - it is a temp brightness adjustment
                 blinkt.set_pixel(7 - i, rgb[0], rgb[1], rgb[2], self.LEDs[i]['brightness'])
         blinkt.show()
         time.sleep(0.1)
@@ -58,11 +57,15 @@ class BlinkingLight(Light):
         #     import RPi.GPIO as GPIO
         #     GPIO.setmode(GPIO.BCM)
         #     GPIO.setwarnings(False)
-        if self.turnOff:
-            self.turnOff()
+        self.stop_worker()
         blinkt.clear()
         blinkt.show()
         pass
+
+    def stop_worker(self):
+        if self.stopThread and self.worker:
+            self.stopThread()
+            self.worker.join()
 
     def call_repeatedly(self, interval, func, *args):
         self.logger.info("* call_repeatedly interval [{}]".format(interval))
@@ -73,5 +76,6 @@ class BlinkingLight(Light):
                 # self.logger.info(f"Thread's loop: ${func}")
                 func(*args)
 
-        Thread(target=loop).start()
+        self.worker = Thread(target=loop)
+        self.worker.start()
         return stopped.set
