@@ -6,7 +6,7 @@
 
 Source: <https://www.raspberrypi.org/documentation/configuration/wireless/headless.md>  
 Put this file onto the boot partition of the SD card `wpa_supplicant.conf`.   
-:warning: **5G wireless does not work!**
+:warning: **5G wireless does not work!**  
 :warning: **The file needs to have LF line breaks!**
 
 ```properties
@@ -25,7 +25,7 @@ network={
 Source: <https://raspberrypi.stackexchange.com/questions/11631/how-to-setup-multiple-wifi-networks>
 
 Edit `/etc/wpa_supplicant/wpa_supplicant.conf` and add id_str="home" under the schools wpa info and id_str="work".
-:warning: **The file needs to have LF line breaks!**
+:warning: **The file needs to have LF line breaks!**  
 
 ```properties
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
