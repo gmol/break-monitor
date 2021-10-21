@@ -7,6 +7,7 @@
 Source: <https://www.raspberrypi.org/documentation/configuration/wireless/headless.md>  
 Put this file onto the boot partition of the SD card `wpa_supplicant.conf`.   
 :warning: **5G wireless does not work!**
+:warning: **The file needs to have LF line breaks!**
 
 ```properties
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
@@ -24,6 +25,7 @@ network={
 Source: <https://raspberrypi.stackexchange.com/questions/11631/how-to-setup-multiple-wifi-networks>
 
 Edit `/etc/wpa_supplicant/wpa_supplicant.conf` and add id_str="home" under the schools wpa info and id_str="work".
+:warning: **The file needs to have LF line breaks!**
 
 ```properties
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
@@ -45,7 +47,7 @@ network={
 
 ### Enable SSH on a headless Raspberry Pi (add file to SD card on another machine)
 
-Source: <https://www.raspberrypi.org/documentation/remote-access/ssh/README.md>
+Source: <https://www.raspberrypi.org/documentation/remote-access/ssh/README.md>  
 For headless setup, SSH can be enabled by placing a file named `ssh`, without any extension, onto the boot partition of the SD card from another computer. The content of the file does not matter; it could contain text, or nothing at all.
 
 ### Password-less SSH access

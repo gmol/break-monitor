@@ -9,7 +9,6 @@ from states import Config
 
 
 class DistanceThresholdCounter(DetectionStrategy):
-
     OBSERVATION_WINDOW = Config.detection_strategy["DistanceThresholdCounter"]["observation_window"]
     DISTANCE_THRESHOLD = Config.detection_strategy["DistanceThresholdCounter"]["distance_threshold"]
     Samples = List[Sample]
@@ -30,7 +29,8 @@ class DistanceThresholdCounter(DetectionStrategy):
         recent_distance_values = map(lambda s: s.distance, recent_samples)
         recent_distance_square_filter = map(lambda s: 1 if s < self.DISTANCE_THRESHOLD else 0, recent_distance_values)
         average_distance = statistics.mean(recent_distance_square_filter)
-        self.logger.info("Observed window[{}] Presence probability [{}]".format(len(recent_samples), average_distance))
+        self.logger.info(
+            "Observed window[{}] Presence probability [{:.2f}]".format(len(recent_samples), average_distance))
         if average_distance >= 0.5:
             return True
         return False
