@@ -57,7 +57,7 @@ if __name__ == '__main__':
 
     print(f"OVERTIME [${Config.OVERTIME}] seconds and REST time [${Config.REST_TIME}] seconds")
 
-    monitor.monitor()
+    monitor.start()
     # ctxt.update_action(Activity.WORKING)
     # ctxt.update_action(Activity.IDLE)
     # ctxt.update_action(Activity.WORKING)

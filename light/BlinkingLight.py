@@ -48,6 +48,7 @@ class BlinkingLight(Light):
         blinkt.show()
         time.sleep(0.1)
         blinkt.clear()
+        time.sleep(0.1)
         blinkt.show()
 
     def off(self):

@@ -14,8 +14,10 @@ class SensorMonitor:
         self.logger = logging.getLogger("SensorMonitor")
         self.work_detector = work_detector
         self.sonar = sonar
+
+    def start(self):
         self.call_repeatedly(1, self.monitor)
-        pass
+        self.work_detector.start()
 
     def monitor(self):
         # while True:

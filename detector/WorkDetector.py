@@ -15,18 +15,18 @@ class WorkDetector:
     def __init__(self, context: Context):
         self.logger = logging.getLogger("WorkDetector")
         self.context = context
-        # TODO Strategy is not configurable
-        if Config.IS_DEBUG:
-            self.call_repeatedly(5, self.detect, DistanceThresholdCounter())
-        else:
-            self.call_repeatedly(1, self.detect, DistanceThresholdCounter())
-        pass
 
     def add_sample(self, sample: Sample):
         self.measurements.append(sample)
         # self.detect()
         self.clean_up()
-        pass
+
+    def start(self):
+        # TODO Strategy is not configurable
+        if Config.IS_DEBUG:
+            self.call_repeatedly(5, self.detect, DistanceThresholdCounter())
+        else:
+            self.call_repeatedly(1, self.detect, DistanceThresholdCounter())
 
     def detect(self, strategy):
         self.logger.info("* detect")
@@ -36,7 +36,6 @@ class WorkDetector:
                 self.context.update_action(Activity.WORKING)
             else:
                 self.context.update_action(Activity.IDLE)
-        pass
 
     def clean_up(self):
         if len(self.measurements) > 1000:
