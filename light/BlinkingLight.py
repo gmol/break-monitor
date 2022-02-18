@@ -15,11 +15,10 @@ from light.Light import Light
 
 class BlinkingLight(Light):
 
-    LEDs = []
-    worker: Thread = None
-    stopThread = None
-
     def __init__(self, config={"color": Config.LightColor.RED}):
+        self.worker: Thread = None
+        self.stopThread = None
+        self.LEDs = []
         self.logger = logging.getLogger("BlinkingLight")
         self.logger.info("Blinking Light created{}".format(config))
 
@@ -40,7 +39,8 @@ class BlinkingLight(Light):
     pass
 
     def effect(self):
-        self.logger.info("Blinking effect")
+        # self.logger.info("Blinking effect. LEDs.length=[{}]".format(len(self.LEDs)))
+        assert len(self.LEDs) == 8, f'len(self.LEDs) > 8 and is [{len(self.LEDs)}]'
         for i in range(len(self.LEDs)):
             if self.LEDs[i]:
                 rgb = [int(x * 255) for x in self.LEDs[i]['color'].rgb]
@@ -48,8 +48,9 @@ class BlinkingLight(Light):
         blinkt.show()
         time.sleep(0.1)
         blinkt.clear()
-        time.sleep(0.1)
         blinkt.show()
+        time.sleep(0.1)
+        # self.logger.info("Blinking effect - 1blinked")
 
     def off(self):
         self.logger.info("Solid Light OFF")

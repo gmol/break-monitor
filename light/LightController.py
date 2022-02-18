@@ -2,6 +2,7 @@ import logging
 from abc import ABC
 
 # from states import SolidLight
+from light.BlinkingLight import BlinkingLight
 from states import Config
 from states.Config import LightEffect
 from states.Config import LightColor
@@ -27,12 +28,14 @@ class LightController(ABC):
             else:
                 light_config = Config.light_config[self.currentEffect]
             self.logger.info("Light Config[{}]".format(light_config))
-            self.light = SolidLight(light_config)
+            if self.currentEffect == Config.LightEffect.BLINKING:
+                self.light = BlinkingLight(light_config)
+            else:
+                self.light = SolidLight(light_config)
             self.light.on()
-        pass
 
     def off(self):
         if self.light:
+            self.logger.info("Light OFF")
             self.light.off()
         self.light = None
-        pass

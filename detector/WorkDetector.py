@@ -10,9 +10,9 @@ from states.Context import Context
 
 
 class WorkDetector:
-    measurements = []
 
     def __init__(self, context: Context):
+        self.measurements = []
         self.logger = logging.getLogger("WorkDetector")
         self.context = context
 

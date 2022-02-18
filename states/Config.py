@@ -54,7 +54,7 @@ light_config = {
     },
     LightEffect.SOLID_GREEN: {
         "color": LightColor.GREEN.value,
-        "brightness": LightBrightness.MAX.value
+        "brightness": (LightBrightness.MAX.value / 2)
     },
     LightEffect.SOLID_YELLOW: {
         "color": LightColor.YELLOW.value,
@@ -94,6 +94,6 @@ light_config = {
     LightEffect.BLINKING: {
         "color": LightColor.RED.value,
         "brightness": LightBrightness.MAX.value,
-        "blinking": True
+        "blinking": True,
     }
 }
