@@ -4,6 +4,7 @@ import logging
 from time import sleep
 
 from detector.WorkDetector import WorkDetector
+from mqtt.MqttNotifier import MqttNotifier
 from sensors.FakeSonar import FakeSonar
 from sensors.SensorMonitor import SensorMonitor
 
@@ -44,7 +45,7 @@ if __name__ == '__main__':
         Config.REST_TIME = 3
         Config.OVERTIME = 5
 
-    ctxt = Context(LightController(), TimeProvider())
+    ctxt = Context(LightController(), TimeProvider(), MqttNotifier())
     monitor = None
 
     if 'win32' in sys.platform:

@@ -16,8 +16,8 @@ class Activity(Enum):
 class MqttConfig(Enum):
     TOPIC = "sensors/breakalert/state"
     HOST = "mqtt.eclipseprojects.io"
-    USERNAME = ""
-    PASSWORD = ""
+    USERNAME = "homeassistant"
+    PASSWORD = "einge2aephoe7oachieth9Aegie1gohb0aepeewoon9cho8eid1ish3ailaecei2"
 
 
 class LightColor(Enum):
