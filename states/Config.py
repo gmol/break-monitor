@@ -13,6 +13,11 @@ class Activity(Enum):
     WORKING = 2
 
 
+class MqttConfig(Enum):
+    TOPIC = "sensors/breakalert/state"
+    HOST = "mqtt.eclipseprojects.io"
+
+
 class LightColor(Enum):
     RED = Color("red")
     GREEN = Color("green")

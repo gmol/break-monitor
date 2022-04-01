@@ -8,6 +8,7 @@ class State(ABC):
     def __init__(self, context):
         self.context = context
         self.logger = logging.getLogger("State")
+        self.name = None
 
     @abstractmethod
     def evaluate(self, activity) -> None:
