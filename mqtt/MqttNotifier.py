@@ -11,9 +11,13 @@ class MqttNotifier:
         self.logger = logging.getLogger("MqttNotifier")
 
     def publish_state(self, state: State):
-        payload = state.__class__.__name__
-        self.logger.info(f"Publish state [{payload}] to MQTT topic [{MqttConfig.TOPIC}] to broken [{MqttConfig.HOST}], username[{MqttConfig.USERNAME}], password[{MqttConfig.PASSWORD}] ")
-        auth = {"username": MqttConfig.USERNAME, "password":  MqttConfig.PASSWORD}
+        if MqttConfig.PASSWORD:
+            payload = state.__class__.__name__
+            self.logger.info(f"Publish state [{payload}] to MQTT topic [{MqttConfig.TOPIC}] "
+                             f"to broken [{MqttConfig.HOST}], username[{MqttConfig.USERNAME}],"
+                             f" password[{MqttConfig.PASSWORD}] ")
+            auth = {"username": MqttConfig.USERNAME, "password":  MqttConfig.PASSWORD}
 
-        publish.single(MqttConfig.TOPIC, payload, hostname=MqttConfig.HOST, auth=auth)
-
+            publish.single(MqttConfig.TOPIC, payload, hostname=MqttConfig.HOST, auth=auth)
+        else:
+            self.logger.info("MQTT password not set. Skip publishing to MQTT.")

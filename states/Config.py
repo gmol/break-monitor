@@ -1,3 +1,4 @@
+import os
 from enum import Enum
 from colour import Color
 
@@ -15,9 +16,9 @@ class Activity(Enum):
 
 class MqttConfig(str, Enum):
     TOPIC = "sensors/breakalert/state"
-    HOST = "192.168.1.142"
+    HOST = os.environ.get('MQTT_HOST')
     USERNAME = "homeassistant"
-    PASSWORD = "einge2aephoe7oachieth9Aegie1gohb0aepeewoon9cho8eid1ish3ailaecei2"
+    PASSWORD = os.environ.get('MQTT_PASSWORD')
 
 
 class LightColor(Enum):
