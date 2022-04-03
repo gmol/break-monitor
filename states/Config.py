@@ -14,11 +14,11 @@ class Activity(Enum):
     WORKING = 2
 
 
-class MqttConfig(str, Enum):
+class MqttConfig:
     TOPIC = "sensors/breakalert/state"
-    HOST = os.environ.get('MQTT_HOST')
+    PASSWORD = os.environ.get('MQTT_PASSWORD', None)
+    HOST = os.environ.get('MQTT_HOST', None)
     USERNAME = "homeassistant"
-    PASSWORD = os.environ.get('MQTT_PASSWORD')
 
 
 class LightColor(Enum):
