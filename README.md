@@ -111,8 +111,10 @@ Activate venv and run the following commands:
   - when probability 1.0, normalize distance values and check how the distance has been changed
 - [ ] Statistics (how much time in front of computer in total so far during the day)
 - [ ] Last 3 LEDs to count break time
+- [ ] Add standby mode (turn off Idle light)
+- [ ] Add AlertState
+- [ ] Unify light config
   
- 
 ![todo](./docs/uml/todo-mindmap.svg)
 
 ## Components
