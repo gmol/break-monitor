@@ -37,9 +37,11 @@ class WorkState(State):
             self.logger.info(
                 "----->  Working time! Timer[{}]".format(round(self.context.get_current_time() - self.timer)))
             # self.context.light_on(LightEffect.SOLID_BLUE)
+        self.logger.info("WorkState evaluate finished")
 
     # when PI is turned on it looks like it starts where it stopped and the timer is set to the previous date
     def fix_timer(self):
+        self.logger.info("----->  Fix_timer")
         current_time = self.context.get_current_time()
         time_difference = current_time - self.timer
         if time_difference > self.UNACCEPTED_DIFFERENCE:

@@ -12,6 +12,7 @@ class RestState(State):
         self.logger = logging.getLogger("RestState")
         self.nextState = work_state
         self.logger.info("* RestState created")
+        self.logger.debug("*get current time [{}]".format(self.context))
         self.timer = self.context.get_current_time()
         self.context.light_on(LightEffect.SOLID_GREEN)
 

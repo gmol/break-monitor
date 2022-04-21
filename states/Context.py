@@ -34,15 +34,20 @@ class Context:
         self.state.evaluate(activity)
 
     def light_on(self, light_mode, extra_config=None):
+        self.logger.info(f"-----> light on")
         self.light_controller.on(light_mode, extra_config)
 
     def light_off(self):
         self.light_controller.off()
 
     def get_current_time(self):
+        # self.logger.debug(f"-----> get_current_time")
         if self.timeProvider is None:
+            # self.logger.debug(f"-----> time.time()")
             return time.time()
         else:
+            self.logger.\
+                debug(f'---> self.timeProvider.get_current_time() [{self.timeProvider.get_current_time():.0f}]')
             return self.timeProvider.get_current_time()
 
     def cleanup(self):
