@@ -12,11 +12,13 @@ from states.State import State
 class IdleState(State):
 
     NUMBER_OF_TRIES = 30
+    STAND_BY_TIME = 10 * 60
 
     def __init__(self, context):
         super().__init__(context)
         self.logger = logging.getLogger("IdleState")
         self.logger.info("* IdleState created")
+        self.timer = self.context.get_current_time()
         counter = 0
         while counter < self.NUMBER_OF_TRIES:
             try:
@@ -46,4 +48,8 @@ class IdleState(State):
         elif activity == Activity.IDLE:
             self.logger.info("Idle activity")
             self.logger.info("SELECTED SOLID light config {}".format(self.effect_config))
-            self.context.light_on(LightEffect.SOLID_ARBITRARY, self.effect_config)
+            if self.timer + self.STAND_BY_TIME > self.context.get_current_time():
+                self.context.light_on(LightEffect.SOLID_ARBITRARY, self.effect_config)
+            else:
+                # Idle more then STANDBY_TIME so turn off the light
+                self.light_off()
