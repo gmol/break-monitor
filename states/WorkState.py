@@ -1,8 +1,9 @@
 import datetime
 import logging
 
-from states.AlertState import AlertState
 from states.Config import LightColor, LightEffect, OVERTIME, Activity, OVERTIME_ALERT
+from states.AlertState import AlertState
+from states.OvertimeState import OvertimeState
 from states.RestState import RestState
 from states.State import State
 
@@ -27,14 +28,15 @@ class WorkState(State):
             # Create Break state and switch
             self.context.change_state(RestState(self.context, self))
         elif self.context.get_current_time() - self.timer > OVERTIME_ALERT:
-            self.logger.info("----->  Idle activity move to Alert state")
+            self.logger.info("----->  Working activity move to Alert state")
             self.context.change_state(AlertState(self.context))
         elif self.context.get_current_time() - self.timer > OVERTIME:
             self.logger.info("----->  OVERTIME[{}m] turn the alarm on! timer[{}], timer+OVERTIME[{}], current time[{}]"
                              .format(round((self.context.get_current_time() - self.timer)/60), round(self.timer),
                                      round(self.timer + OVERTIME),
                                      round(self.context.get_current_time())))
-            self.context.light_on(LightEffect.SOLID_RED)
+            # self.context.light_on(LightEffect.SOLID_RED)
+            self.context.change_state(OvertimeState(self.context))
         else:
             self.logger.info(
                 "----->  Working time! Timer[{}]".format(round(self.context.get_current_time() - self.timer)))

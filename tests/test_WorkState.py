@@ -9,6 +9,7 @@ from states.Config import Activity, OVERTIME, LightColor, LightEffect, OVERTIME_
 from states.Context import Context
 from light.LightController import LightController
 from states.IdleState import IdleState
+from states.OvertimeState import OvertimeState
 from states.RestState import RestState
 from states.TimeProvider import TimeProvider
 from states.WorkState import WorkState
@@ -103,6 +104,18 @@ class TestWorkState(TestCase):
         assert isinstance(self.context.state, WorkState)
 
         self.set_time_acceleration(OVERTIME)
+        self.context.update_action(Activity.WORKING)
+
+        assert isinstance(self.context.state, OvertimeState)
+        pass
+
+    def test_evaluate_work_time(self):
+        self.logger.debug(">>>---> test_evaluate_work_time")
+
+        self.context.update_action(Activity.WORKING)
+        assert isinstance(self.context.state, WorkState)
+
+        # state should change unchanged
         self.context.update_action(Activity.WORKING)
 
         assert isinstance(self.context.state, WorkState)
