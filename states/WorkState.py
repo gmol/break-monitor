@@ -15,18 +15,20 @@ class WorkState(State):
         self.name = self.__class__.__name__
         self.logger = logging.getLogger(self.name)
         self.timer = context.get_current_time()
-        self.logger.debug(f"* [{self.name}] created [${self.timer}]")
+        self.logger.debug(f"* [{self.name}] created [{self.timer:.0f}] seconds since epoch")
         # self.context.light_on(LightEffect.SOLID_RED, {'color': LightColor.RED})
 
     def evaluate(self, activity) -> None:
         self.fix_timer()
+        self.logger.info("----->  WorkState:evaluate")
         if activity == Activity.IDLE:
             self.logger.info("----->  Idle activity move to rest")
             self.context.light_off()
             # Create Break state and switch
             self.context.change_state(RestState(self.context, self))
         elif self.context.get_current_time() - self.timer > OVERTIME_ALERT:
-            self.context.change_state(AlertState(self.context, self))
+            self.logger.info("----->  Idle activity move to Alert state")
+            self.context.change_state(AlertState(self.context))
         elif self.context.get_current_time() - self.timer > OVERTIME:
             self.logger.info("----->  OVERTIME[{}m] turn the alarm on! timer[{}], timer+OVERTIME[{}], current time[{}]"
                              .format(round((self.context.get_current_time() - self.timer)/60), round(self.timer),

@@ -40,6 +40,7 @@ class Context:
     def light_off(self):
         self.light_controller.off()
 
+    # Returns time in seconds
     def get_current_time(self):
         # self.logger.debug(f"-----> get_current_time")
         if self.timeProvider is None:
@@ -47,9 +48,13 @@ class Context:
             return time.time()
         else:
             self.logger.\
-                debug(f'---> self.timeProvider.get_current_time() [{self.timeProvider.get_current_time():.0f}]')
+                debug(f'---> self.timeProvider.get_current_time() [{self.timeProvider.get_current_time():.0f}] seconds '
+                      f'since epoch')
             return self.timeProvider.get_current_time()
 
     def cleanup(self):
         self.logger.info('Turn off the light.')
         self.light_controller.off()
+
+    def get_state(self):
+        return self.state

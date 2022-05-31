@@ -17,3 +17,6 @@ class State(ABC):
     def adjust_timer(self, offset):
         self.logger.info(f"Timer [${round(self.timer)}] adjusted to [${round(self.timer + offset)}] by [${round(offset)}]")
         self.timer = max(0, self.timer + offset)
+
+    def get_name(self):
+        return self.name

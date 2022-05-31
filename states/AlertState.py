@@ -13,7 +13,7 @@ class AlertState(State):
         self.name = self.__class__.__name__
         self.logger = logging.getLogger(self.name)
         self.timer = context.get_current_time()
-        self.logger.debug(f"* [{self.name}] created [${self.timer}]")
+        self.logger.debug(f"* [{self.name}] created [{self.timer:.0f}] seconds")
         # self.context.light_on(LightEffect.SOLID_RED, {'color': LightColor.RED})
 
     def evaluate(self, activity) -> None:

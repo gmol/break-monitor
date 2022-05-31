@@ -10,7 +10,7 @@ class RestState(State):
     def __init__(self, context, work_state):
         super().__init__(context)
         self.logger = logging.getLogger("RestState")
-        self.nextState = work_state
+        self.prevState = work_state
         self.logger.info("* RestState created")
         self.logger.debug("*get current time [{}]".format(self.context))
         self.timer = self.context.get_current_time()
@@ -24,9 +24,9 @@ class RestState(State):
             # Unless the activity evaluation exclude near desk presence as working time
 
             # Adjust the working state timer by deducting a 'short' break time
-            self.nextState.adjust_timer(-self.context.get_current_time() + self.timer)
+            self.prevState.adjust_timer(-self.context.get_current_time() + self.timer)
             self.context.light_off()
-            self.context.change_state(self.nextState)
+            self.context.change_state(self.prevState)
 
         if self.timer + REST_TIME < self.context.get_current_time():
             self.logger.info("Activity[{}] rest finish move to Idle state".format(activity))
