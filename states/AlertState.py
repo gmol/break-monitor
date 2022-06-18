@@ -15,6 +15,7 @@ class AlertState(State):
         self.timer = context.get_current_time()
         self.logger.debug(f"* [{self.name}] created [{self.timer:.0f}] seconds")
         # self.context.light_on(LightEffect.SOLID_RED, {'color': LightColor.RED})
+        self.context.light_on(LightEffect.BLINKING)
 
     def evaluate(self, activity) -> None:
         if activity == Activity.IDLE:

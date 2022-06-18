@@ -16,10 +16,9 @@ from states.WorkState import WorkState
 
 
 class TestWorkState(TestCase):
-
     test_start = time.time()
     initial_time = test_start
-    timer_call_counter = 0
+    timer_call_counter = 0  # TODO It does not have functional value. It's only for debugging. remove in future
     logger = logging.getLogger("TestWorkState")
     time_accelerator = 0
 
@@ -31,7 +30,8 @@ class TestWorkState(TestCase):
         # else:
         #     self.initial_time += 1000
 
-        self.logger.debug(f'---> next_timer_value [{self.get_timer_call_counter()}]=[{self.initial_time - self.test_start:.0f}] seconds since test start')
+        self.logger.debug(
+            f'---> next_timer_value [{self.get_timer_call_counter()}]=[{self.initial_time - self.test_start:.0f}] seconds since test start')
         self.incr_timer_call_counter()
         return self.initial_time
 
@@ -44,8 +44,9 @@ class TestWorkState(TestCase):
         self.time_accelerator = delta
 
     def setUp(self):
-        self.logger.info(f'Setup test. Get logger level[{self.logger.getEffectiveLevel()}] DEBUG[{logging.DEBUG}] INFO[{logging.INFO}]'
-                         f' ERROR[{logging.ERROR}]')
+        self.logger.info(
+            f'Setup test. Get logger level[{self.logger.getEffectiveLevel()}] DEBUG[{logging.DEBUG}] INFO[{logging.INFO}]'
+            f' ERROR[{logging.ERROR}]')
         self.mock_light = Mock(spec=LightController)
         self.mock_time_provider = Mock(spec=TimeProvider)
         self.mock_time_provider.get_current_time.side_effect = self.next_timer_value
@@ -85,7 +86,7 @@ class TestWorkState(TestCase):
         work_state.evaluate(Activity.WORKING)
 
         # self.context.change_state.assert_called_once()
-        assert isinstance(self.context.state, AlertState)
+        assert isinstance(self.context.state, OvertimeState)
 
         # self.logger.debug(f'ARGS: {self.context.change_state.call_args}')
         # self.mock_light.on.assert_called_with(LightEffect.SOLID_RED)

@@ -27,11 +27,12 @@ class WorkState(State):
             self.context.light_off()
             # Create Break state and switch
             self.context.change_state(RestState(self.context, self))
-        elif self.context.get_current_time() - self.timer > OVERTIME_ALERT:
-            self.logger.info("----->  Working activity move to Alert state")
-            self.context.change_state(AlertState(self.context))
+        # elif self.context.get_current_time() - self.timer > OVERTIME_ALERT:
+        #     self.logger.info("----->  Working activity move to Alert state")
+        #     self.context.change_state(AlertState(self.context))
         elif self.context.get_current_time() - self.timer > OVERTIME:
-            self.logger.info("----->  OVERTIME[{}m] turn the alarm on! timer[{}], timer+OVERTIME[{}], current time[{}]"
+            self.logger.info("----->  OVERTIME[{}m] Switch to Overtime state! timer[{}],"
+                             " timer+OVERTIME[{}], current time[{}]"
                              .format(round((self.context.get_current_time() - self.timer)/60), round(self.timer),
                                      round(self.timer + OVERTIME),
                                      round(self.context.get_current_time())))

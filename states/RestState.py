@@ -28,7 +28,7 @@ class RestState(State):
             self.context.light_off()
             self.context.change_state(self.prevState)
 
-        if self.timer + REST_TIME < self.context.get_current_time():
+        if self.context.get_current_time() - self.timer > REST_TIME:
             self.logger.info("Activity[{}] rest finish move to Idle state".format(activity))
             # Create Idle state and switch
             self.context.light_off()
