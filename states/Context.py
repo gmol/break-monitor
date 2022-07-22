@@ -30,7 +30,7 @@ class Context:
         #     print(f"Update activity ${activity} and ${Activity.WORKING} are ==")
         # else:
         #     print(f"Update activity ${activity} and ${Activity.WORKING} are !=")
-        # self.logger.debug(f"Update activity ${activity}")
+        self.logger.debug(f"state[{self.state}] Update activity [{activity}]")
         self.state.evaluate(activity)
 
     def light_on(self, light_mode, extra_config=None):
