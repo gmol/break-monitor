@@ -4,7 +4,7 @@ from colour import Color
 
 REST_TIME = 5 * 60
 OVERTIME = 45 * 60
-OVERTIME_ALERT = 60 * 60
+OVERTIME_ALERT = 15 * 60
 
 IS_DEBUG = False
 
