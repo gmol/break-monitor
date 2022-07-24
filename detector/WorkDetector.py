@@ -7,7 +7,7 @@ from states import Config
 
 from states.Config import Activity
 from states.Context import Context
-from utils import Executor
+from utils.Executor import Executor
 
 
 class WorkDetector:
@@ -16,7 +16,7 @@ class WorkDetector:
         self.measurements = []
         self.logger = logging.getLogger("WorkDetector")
         self.context = context
-        self.executor = Executor()    
+        self.executor = Executor()
 
     def add_sample(self, sample: Sample):
         self.measurements.append(sample)
@@ -40,3 +40,7 @@ class WorkDetector:
             else:
                 self.context.update_action(Activity.IDLE)
 
+    def clean_up(self):
+        if len(self.measurements) > 1000:
+            # TODO provide a better cleanup
+            del self.measurements[0]
