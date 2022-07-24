@@ -7,6 +7,7 @@ from states import Config
 
 from states.Config import Activity
 from states.Context import Context
+from utils import Executor
 
 
 class WorkDetector:
@@ -15,6 +16,7 @@ class WorkDetector:
         self.measurements = []
         self.logger = logging.getLogger("WorkDetector")
         self.context = context
+        self.executor = Executor()    
 
     def add_sample(self, sample: Sample):
         self.measurements.append(sample)
@@ -24,9 +26,9 @@ class WorkDetector:
     def start(self):
         # TODO Strategy is not configurable
         if Config.IS_DEBUG:
-            self.call_repeatedly(5, self.detect, DistanceThresholdCounter())
+            self.executor.call_repeatedly(5, self.detect, DistanceThresholdCounter())
         else:
-            self.call_repeatedly(1, self.detect, DistanceThresholdCounter())
+            self.executor.call_repeatedly(1, self.detect, DistanceThresholdCounter())
 
     def detect(self, strategy):
         self.logger.info("* detect")
@@ -38,19 +40,3 @@ class WorkDetector:
             else:
                 self.context.update_action(Activity.IDLE)
 
-    def clean_up(self):
-        if len(self.measurements) > 1000:
-            # TODO provide a better cleanup
-            del self.measurements[0]
-
-    def call_repeatedly(self, interval, func, *args):
-        # self.logger.info("* call_repeatedly interval [{}]".format(interval))
-        stopped = Event()
-
-        def loop():
-            while not stopped.wait(interval):  # the first call is in `interval` secs
-                # self.logger.info(f"Thread's loop: ${func}")
-                func(*args)
-
-        Thread(target=loop).start()
-        return stopped.set

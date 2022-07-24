@@ -4,7 +4,7 @@ import logging
 from time import sleep
 
 from detector.WorkDetector import WorkDetector
-from mqtt.MqttNotifier import MqttNotifier
+from utils.MqttNotifier import MqttNotifier
 from sensors.FakeSonar import FakeSonar
 from sensors.SensorMonitor import SensorMonitor
 

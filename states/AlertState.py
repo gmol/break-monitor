@@ -27,3 +27,4 @@ class AlertState(State):
             self.context.light_on(LightEffect.BLINKING)
             self.logger.info(
                 "----->  Working alert! Timer[{}]".format(round(self.context.get_current_time() - self.timer)))
+        self.logger.info("AlertState evaluate finished")

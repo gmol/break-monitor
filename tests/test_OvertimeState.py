@@ -4,7 +4,7 @@ import logging
 from unittest.mock import Mock
 
 from light.LightController import LightController
-from mqtt.MqttNotifier import MqttNotifier
+from utils.MqttNotifier import MqttNotifier
 from states.AlertState import AlertState
 from states.TimeProvider import TimeProvider
 from states.Config import Activity, LightEffect, OVERTIME_ALERT, OVERTIME

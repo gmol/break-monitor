@@ -3,7 +3,7 @@ import time
 import atexit
 
 from light.LightController import LightController
-from mqtt import MqttNotifier
+from utils import MqttNotifier
 from states.Config import Activity
 from states.IdleState import IdleState
 

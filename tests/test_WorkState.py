@@ -3,7 +3,7 @@ import time
 from unittest import TestCase
 from unittest.mock import Mock
 
-from mqtt.MqttNotifier import MqttNotifier
+from utils.MqttNotifier import MqttNotifier
 from states.AlertState import AlertState
 from states.Config import Activity, OVERTIME, LightColor, LightEffect, OVERTIME_ALERT
 from states.Context import Context
