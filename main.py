@@ -1,6 +1,7 @@
 import sys
 import argparse
 import logging
+from logging.handlers import RotatingFileHandler
 from time import sleep
 
 from detector.WorkDetector import WorkDetector
@@ -38,12 +39,47 @@ if __name__ == '__main__':
     # Switch
     parser.add_argument('--debug', action='store_true',
                         help='Run project in DEBUG mode')
+    parser.add_argument("-log", "--log", default="warning",
+    help=("Provide logging level. "
+        "Example --log debug', default='warning'"))
     args = parser.parse_args()
     if args.debug:
         logger.info(">>>>> DEBUG mode <<<<<")
         Config.IS_DEBUG = True
         Config.REST_TIME = 3
         Config.OVERTIME = 5
+
+    levels = {
+        'critical': logging.CRITICAL,
+        'error': logging.ERROR,
+        'warn': logging.WARNING,
+        'warning': logging.WARNING,
+        'info': logging.INFO,
+        'debug': logging.DEBUG
+    }
+    logging_level = levels.get(args.log.lower())
+    if logging_level is None:
+        raise ValueError(
+            f"log level given: {args.log}"
+            f" -- must be one of: {' | '.join(levels.keys())}")
+
+    # logging.basicConfig(encoding='utf-8', level=logging.DEBUG, format='%(asctime)s %(name)s[%(levelname)s]: %(message)s')
+    consoleHandler = logging.StreamHandler()
+    consoleHandler.setLevel(logging_level)
+    # create formatter and add it to the handlers
+    # consoleHandler.setFormatter(logging.Formatter('%(name)+25s %(levelname)-6s %(message)s'))
+
+    logging.basicConfig(
+        level=logging_level,
+        # format='%(asctime)s %(name)s[%(levelname)s]: %(message)s',
+        # format='[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s',
+        format='%(asctime)s %(name)+25s:%(lineno)-3d %(levelname)-6s %(message)s',
+        handlers=[
+            RotatingFileHandler('./breakalert.log', maxBytes=500000, backupCount=5)
+            ,
+            consoleHandler
+        ]
+    )
 
     ctxt = Context(LightController(), TimeProvider(), MqttNotifier())
     monitor = None
