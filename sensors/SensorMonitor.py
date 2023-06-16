@@ -16,7 +16,7 @@ class SensorMonitor:
         self.sonar = sonar
 
     def start(self):
-        self.call_repeatedly(1, self.monitor)
+        self.schedule_repeatedly(1, self.monitor)
         self.work_detector.start()
 
     def monitor(self):
@@ -32,7 +32,14 @@ class SensorMonitor:
         else:
             time.sleep(1)
 
-    def call_repeatedly(self, interval, func, *args):
+    def schedule_repeatedly(self, interval, func, *args):
+        """
+        Schedules a function to be called repeatedly with a specified interval.
+
+        :param interval: Time interval between function calls in seconds.
+        :param func: Function to be called repeatedly.
+        :param args: Arguments to be passed to the function.
+        """
         # self.logger.info("* call_repeatedly interval [{}]".format(interval))
         stopped = Event()
 
