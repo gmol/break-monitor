@@ -89,7 +89,9 @@ REM Run app using python from ven
 #### Linux 
 
 ```shell
+sudo apt-get install python3-venv
 cd breakalert
+python -m venv venv
 ./venv/bin/python main.py
 ```
 
