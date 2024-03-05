@@ -76,11 +76,23 @@ Look at the [Makefile](./Makefile) file.
 
 ### Run app
 
+#### Windows
+
 ```bat
+cd breakalert
 REM Set PYTHONPATH
 set PYTHONPATH=.
 REM Run app using python from ven
-.\venv\Scripts\python.exe states/main.py
+.\venv\Scripts\python.exe main.py
+```
+
+#### Linux 
+
+```shell
+sudo apt-get install python3-venv
+cd breakalert
+python -m venv venv
+./venv/bin/python main.py
 ```
 
 ### Run unit tests
