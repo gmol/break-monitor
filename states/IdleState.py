@@ -6,6 +6,7 @@ from time import sleep
 from helpers.ip_address import get_last_ip_number_in_bin_array
 from states import Config
 from states.Config import LightEffect, LightColor, Activity
+# from states.Context import Context
 from states.State import State
 
 
@@ -20,23 +21,26 @@ class IdleState(State):
         counter = 0
         while counter < self.NUMBER_OF_TRIES:
             try:
-                sleep(1)
+                # sleep for 1 second after first attempt
+                if counter > 0:
+                    sleep(1)
                 self.ip_bits = get_last_ip_number_in_bin_array()
                 break
             except:
                 counter += 1
                 e = sys.exc_info()[0]
-                self.logger.info('Get IP exception: {}'.format(e))
+                self.logger.error('Get IP exception: {}'.format(e))
 
         self.effect_config = Config.light_config[LightEffect.SOLID_ARBITRARY]
         leds = [LightColor.YELLOW for i in range(8)]
-        for i in range(len(self.ip_bits)):
-            if 1 == self.ip_bits[i]:
-                leds[i] = LightColor.BLUE
+        if counter < self.NUMBER_OF_TRIES:
+            for i in range(len(self.ip_bits)):
+                if 1 == self.ip_bits[i]:
+                    leds[i] = LightColor.BLUE
 
         self.effect_config["LEDs"] = leds
 
-    def evaluate(self, activity) -> None:
+    def evaluate(self, activity: Activity) -> None:
         if activity == Activity.WORKING:
             self.logger.info("Working activity move to WorkState")
             self.context.light_off()

@@ -5,6 +5,8 @@ from states import Config
 
 if 'win32' in sys.platform:
     import light.FakeBlinkt as blinkt
+if 'darwin' in sys.platform:
+    import light.FakeBlinkt as blinkt
 else:
     import blinkt
 

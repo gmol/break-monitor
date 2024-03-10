@@ -48,8 +48,9 @@ if __name__ == '__main__':
     ctxt = Context(LightController(), TimeProvider(), MqttNotifier())
     monitor = None
 
-    if 'win32' in sys.platform:
-        logger.info(">>>>> WINDOWS environment <<<<<")
+    # if it is a windows platform or darwin (mac)
+    if 'win32' in sys.platform or 'darwin' in sys.platform:
+        logger.info(">>>>> PC environment <<<<<")
         monitor = SensorMonitor(work_detector=WorkDetector(ctxt), sonar=FakeSonar())
     else:
         logger.info(">>>>> PI environment <<<<<")

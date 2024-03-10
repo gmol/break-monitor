@@ -28,8 +28,10 @@ class SensorMonitor:
             sample = Sample(timestamp, distance)
             self.work_detector.add_sample(sample)
         if Config.IS_DEBUG:
+            self.logger.debug("Calling sleep(5)")
             time.sleep(5)
         else:
+            self.logger.debug("Calling sleep(1)")
             time.sleep(1)
 
     def schedule_repeatedly(self, interval, func, *args):

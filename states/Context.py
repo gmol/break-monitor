@@ -16,21 +16,17 @@ class Context:
         self.state = IdleState(self)
         self.timeProvider = time_provider
         self.mqttNotifier = mqtt_notifier
+        self.workStartTime = -1.0
         atexit.register(self.cleanup)
 
     def change_state(self, state):
         self.logger.info(f"-----> Change state ${state}")
         self.state = state
-        self.mqttNotifier.publish_state(state)
+        # publish the state change to the mqtt if mqttNotifier is available
+        if self.mqttNotifier is not None:
+            self.mqttNotifier.publish_state(state)
 
     def update_action(self, activity: Activity):
-        # print(f"-----> change state ${activity}")
-        # print(f"-----> change state ${Activity.WORKING}")
-        # if activity == Activity.WORKING:
-        #     print(f"Update activity ${activity} and ${Activity.WORKING} are ==")
-        # else:
-        #     print(f"Update activity ${activity} and ${Activity.WORKING} are !=")
-        # self.logger.debug(f"Update activity ${activity}")
         self.state.evaluate(activity)
 
     def light_on(self, light_mode, extra_config=None):
@@ -48,3 +44,14 @@ class Context:
     def cleanup(self):
         self.logger.info('Turn off the light.')
         self.light_controller.off()
+
+    def get_work_start_time(self):
+        return self.workStartTime
+
+    def set_work_start_time_now(self):
+        # self.logger.info(f"Work start time set to now ${self.timeProvider.get_current_time()}")
+        self.workStartTime = self.timeProvider.get_current_time()
+        self.logger.info(f"Work start time set to [{time}]")
+
+    def get_elapsed_time(self):
+        return self.get_current_time() - self.workStartTime
