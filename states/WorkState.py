@@ -30,11 +30,15 @@ class WorkState(State):
             # Create Break state and switch
             self.context.change_state(states.RestState.RestState(self.context))
         elif elapsed_time > OVERTIME:
-            self.logger.info("----->  OVERTIME[{}m] turn the alarm on! work time[{}], current time[{}]"
+            self.logger.info("----->  OVERTIME [{}m] turn the alarm on! work time[{}], current time[{}]"
                              .format(round(elapsed_time / 60),
                                      round(self.context.get_work_start_time()),
                                      round(current_time)))
             if elapsed_time > OVERTIME_ALERT:
+                self.logger.info("----->  OVERTIME ALERT [{}m] turn the alarm on! work time[{}], current time[{}]"
+                                 .format(round(elapsed_time / 60),
+                                         round(self.context.get_work_start_time()),
+                                         round(current_time)))
                 self.context.light_on(LightEffect.BLINKING)
             else:
                 self.context.light_on(LightEffect.SOLID_RED)
