@@ -18,6 +18,7 @@ class IdleState(State):
         super().__init__(context)
         self.logger = logging.getLogger("IdleState")
         self.logger.info("* IdleState created")
+        self.context.reset_work_start_time()
 
         self.effect_config = Config.light_config[LightEffect.SOLID_ARBITRARY]
         leds = [LightColor.YELLOW for i in range(8)]

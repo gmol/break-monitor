@@ -45,6 +45,9 @@ class Context:
         self.logger.info('Turn off the light.')
         self.light_controller.off()
 
+    def reset_work_start_time(self):
+        self.workStartTime = -1.0
+
     def get_work_start_time(self):
         return self.workStartTime
 
