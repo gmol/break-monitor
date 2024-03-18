@@ -1,3 +1,5 @@
+<!-- markdownlint-disable MD033 -->
+
 # breakalert project
 
 ## Raspberry Pi Zero Setup
@@ -95,6 +97,39 @@ python -m venv venv
 ./venv/bin/python main.py
 ```
 
+### Activate venv
+
+<table>
+<thead>
+<tr ><th ><p>Platform</p></th>
+<th ><p>Shell</p></th>
+<th ><p>Command to activate virtual environment</p></th>
+</tr>
+</thead>
+<tbody>
+<tr><td rowspan="4"><p>POSIX</p></td>
+<td><p>bash/zsh</p></td>
+<td><p><code ><span>$</span> <span>source</span> <em><span>&lt;venv&gt;</span></em><span>/bin/activate</span></code></p></td>
+</tr>
+<tr ><td><p>fish</p></td>
+<td><p><code ><span>$</span> <span>source</span> <em><span>&lt;venv&gt;</span></em><span>/bin/activate.fish</span></code></p></td>
+</tr>
+<tr><td><p>csh/tcsh</p></td>
+<td><p><code ><span>$</span> <span>source</span> <em><span>&lt;venv&gt;</span></em><span>/bin/activate.csh</span></code></p></td>
+</tr>
+<tr ><td><p>PowerShell</p></td>
+<td><p><code ><span>$</span> <em><span>&lt;venv&gt;</span></em><span>/bin/Activate.ps1</span></code></p></td>
+</tr>
+<tr><td rowspan="2"><p>Windows</p></td>
+<td><p>cmd.exe</p></td>
+<td><p><code ><span>C:\&gt;</span> <em><span>&lt;venv&gt;</span></em><span>\Scripts\activate.bat</span></code></p></td>
+</tr>
+<tr ><td><p>PowerShell</p></td>
+<td><p><code ><span>PS</span> <span>C:\&gt;</span> <em><span>&lt;venv&gt;</span></em><span>\Scripts\Activate.ps1</span></code></p></td>
+</tr>
+</tbody>
+</table>
+
 ### Run unit tests
 
 Run command from the root directory:
@@ -146,33 +181,3 @@ Activate venv and run the following commands:
 
 
 
-<table>
-<thead>
-<tr ><th ><p>Platform</p></th>
-<th ><p>Shell</p></th>
-<th ><p>Command to activate virtual environment</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td rowspan="4"><p>POSIX</p></td>
-<td><p>bash/zsh</p></td>
-<td><p><code ><span>$</span> <span>source</span> <em><span>&lt;venv&gt;</span></em><span>/bin/activate</span></code></p></td>
-</tr>
-<tr ><td><p>fish</p></td>
-<td><p><code ><span>$</span> <span>source</span> <em><span>&lt;venv&gt;</span></em><span>/bin/activate.fish</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p>csh/tcsh</p></td>
-<td><p><code ><span>$</span> <span>source</span> <em><span>&lt;venv&gt;</span></em><span>/bin/activate.csh</span></code></p></td>
-</tr>
-<tr ><td><p>PowerShell</p></td>
-<td><p><code ><span>$</span> <em><span>&lt;venv&gt;</span></em><span>/bin/Activate.ps1</span></code></p></td>
-</tr>
-<tr class="row-even"><td rowspan="2"><p>Windows</p></td>
-<td><p>cmd.exe</p></td>
-<td><p><code ><span>C:\&gt;</span> <em><span>&lt;venv&gt;</span></em><span>\Scripts\activate.bat</span></code></p></td>
-</tr>
-<tr ><td><p>PowerShell</p></td>
-<td><p><code ><span>PS</span> <span>C:\&gt;</span> <em><span>&lt;venv&gt;</span></em><span>\Scripts\Activate.ps1</span></code></p></td>
-</tr>
-</tbody>
-</table>
