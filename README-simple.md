@@ -4,19 +4,75 @@
 
 ## Raspberry Pi Zero Setup
 
-```shell
-sudo apt install python3-dev
-python3 -m venv foobar
-# or
-# see https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/installing-circuitpython-on-raspberry-pi#setup-virtual-environment-3157129
-python -m venv foobar --system-site-packages
+Example for Neopixel and the distance sensor.
 
+```python
+import board
+import neopixel
+from gpiozero import DistanceSensor
+from time import sleep
+
+pixel_pin = board.D12
+# The number of NeoPixels
+num_pixels = 1
+pixels = neopixel.NeoPixel(
+    pixel_pin, num_pixels, brightness=0.1, auto_write=False, pixel_order=neopixel.RGB
+)
+sensor = DistanceSensor(max_distance=2, trigger=23, echo=24)
+while True:
+    print('Distance to nearest object is', sensor.distance*100, 'cm')
+    if sensor.distance*100 < 20:
+        pixels.fill((255, 0, 0)) # full brightness * the general brightness, i.e 255 * 0.1
+    else:
+        pixels.fill((0, 128, 0)) # half brightness * the general brightness, i.e. 128 * 0.1
+    pixels.show()
+    sleep(0.1)
+```
+
+`requirements.txt` file:
+
+```plain
+adafruit-blinka
+adafruit-circuitpython-neopixel
+```
+
+```shell
+########################################
+# This worked for Neopixel and HC-SR04 #
+########################################
+
+# Onetime system setup
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt install git
+sudo apt install python3-dev
+sudo apt install python3-venv
+sudo apt-get install pigpio python-pigpio python3-pigpio
+
+# start pigpio (this might need a start every time the system starts)
+sudo pigpiod
+
+# Project setup
+export myproject=my-project
+cd ${myproject}
+# see https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/installing-circuitpython-on-raspberry-pi#setup-virtual-environment-3157129
+python3 -m venv venv --system-site-packages
+source venv/bin/activate
+./bin/python -m pip install --upgrade -r requirements.txt  # OR
+# pip3 install --upgrade adafruit-blinka
+# pip3 install adafruit-circuitpython-neopixel
+
+# start program
+sudo GPIOZERO_PIN_FACTORY=pigpio  /home/pi/${myproject}/venv/bin/python /home/pi/${myproject}/distance.py
 ```
 
 ❗NOTE❗  
  Properly installed venv on RPi should have `pyvenv`.cfg file inside the main directory. See [Adafruit tutorial](https://tinyurl.com/2524dums).
 
-### Distance measure
+### Distance measure notes
+
+❗NOTE❗  
+The above settings should be sufficient and the HC-SR04 dependencies should be pre-installed at the system level.  
 
 File: requirements.txt. Try without this installation. The [Adafruit tutorial](https://tinyurl.com/2524dums) about venv said `gpiozero` should be installed with the system (but maybe not the headless one)
 
@@ -69,7 +125,7 @@ while True:
     sleep(1)
 ```
 
-### Light
+### Neopixel notes
 
 Try install `blinka` via automated install in venv, i.e. after activating the environment: <https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/installing-circuitpython-on-raspberry-pi#automated-install-3081632>.  
 Or install manually: <https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/installing-circuitpython-on-raspberry-pi#manual-install-3157124>
@@ -97,12 +153,8 @@ pixel_pin = board.D12
 # The number of NeoPixels
 num_pixels = 1
 
-# The order of the pixel colors - RGB or GRB. Some NeoPixels have red and green reversed!
-# For RGBW NeoPixels, simply change the ORDER to RGBW or GRBW.
-ORDER = neopixel.RGB
-
 pixels = neopixel.NeoPixel(
-    pixel_pin, num_pixels, brightness=0.1, auto_write=False, pixel_order=ORDER
+    pixel_pin, num_pixels, brightness=0.1, auto_write=False, pixel_order=neopixel.RGB
 )
 
 
