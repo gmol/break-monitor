@@ -208,3 +208,19 @@ while True:
     pixels.show()
     time.sleep(3)
 ```
+## Colors
+
+| Color Description                                      | HTML Color Code | RGB Values           |
+|--------------------------------------------------------|-----------------|----------------------|
+| <span style="color: #fefdbd;">Very Light Yellow</span> | `#fefdbd`       | `rgb(254, 253, 189)` |
+| <span style="color: #ffefaf;">Soft Yellow</span>       | `#ffefaf`       | `rgb(255, 239, 175)` |
+| <span style="color: #ffe191;">Bright Yellow</span>     | `#ffe191`       | `rgb(255, 225, 145)` |
+| <span style="color: #ffc358;">Golden Yellow</span>     | `#ffc358`       | `rgb(255, 195, 88)`  |
+| <span style="color: #ff9f34;">Orange</span>            | `#ff9f34`       | `rgb(255, 159, 52)`  |
+| <span style="color: #fd6f41;">Light Orange-Red</span>  | `#fd6f41`       | `rgb(253, 111, 65)`  |
+| <span style="color: #db4453;">Reddish Pink</span>      | `#db4453`       | `rgb(219, 68, 83)`   |
+| <span style="color: #c44652;">Dark Pink</span>         | `#c44652`       | `rgb(196, 70, 82)`   |
+| <span style="color: #b34852;">Pinkish Brown</span>     | `#b34852`       | `rgb(179, 72, 82)`   |
+| <span style="color: #8c4a4e;">Dark Brown</span>        | `#8c4a4e`       | `rgb(140, 74, 78)`   |
+| <span style="color: #7f464c;">Deeper Brown</span>      | `#7f464c`       | `rgb(127, 70, 76)`   |
+
