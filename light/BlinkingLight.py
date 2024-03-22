@@ -7,6 +7,8 @@ from states import Config
 
 if 'win32' in sys.platform:
     import light.FakeBlinkt as blinkt
+if 'darwin' in sys.platform:
+    import light.FakeBlinkt as blinkt
 else:
     import blinkt
 
@@ -46,7 +48,7 @@ class BlinkingLight(Light):
                 rgb = [int(x * 255) for x in self.LEDs[i]['color'].rgb]
                 blinkt.set_pixel(7 - i, rgb[0], rgb[1], rgb[2], self.LEDs[i]['brightness'])
         blinkt.show()
-        time.sleep(0.1)
+        time.sleep(10)
         blinkt.clear()
         blinkt.show()
         time.sleep(0.1)

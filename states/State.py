@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 
 
 class State(ABC):
-    timer = 0
+    restTimerStart = 0
 
     def __init__(self, context):
         self.context = context
@@ -14,6 +14,7 @@ class State(ABC):
     def evaluate(self, activity) -> None:
         pass
 
-    def adjust_timer(self, offset):
-        self.logger.info(f"Timer [${round(self.timer)}] adjusted to [${round(self.timer + offset)}] by [${round(offset)}]")
-        self.timer = max(0, self.timer + offset)
+    # TODO remove if not used
+    # def adjust_timer(self, offset):
+    #     self.logger.info(f"Timer [${round(self.restTimerStart)}] adjusted to [${round(self.restTimerStart + offset)}] by [${round(offset)}]")
+    #     self.restTimerStart = max(0, self.restTimerStart + offset)

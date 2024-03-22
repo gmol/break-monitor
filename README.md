@@ -143,3 +143,36 @@ Activate venv and run the following commands:
 | -------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | Cancelable repetitive task | <https://stackoverflow.com/questions/22498038/improve-current-implementation-of-a-setinterval/22498708#22498708> |
 | metronome like ticks       | <https://stackoverflow.com/a/25251804/4279>                                                                      |
+
+
+
+<table>
+<thead>
+<tr ><th ><p>Platform</p></th>
+<th ><p>Shell</p></th>
+<th ><p>Command to activate virtual environment</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td rowspan="4"><p>POSIX</p></td>
+<td><p>bash/zsh</p></td>
+<td><p><code ><span>$</span> <span>source</span> <em><span>&lt;venv&gt;</span></em><span>/bin/activate</span></code></p></td>
+</tr>
+<tr ><td><p>fish</p></td>
+<td><p><code ><span>$</span> <span>source</span> <em><span>&lt;venv&gt;</span></em><span>/bin/activate.fish</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>csh/tcsh</p></td>
+<td><p><code ><span>$</span> <span>source</span> <em><span>&lt;venv&gt;</span></em><span>/bin/activate.csh</span></code></p></td>
+</tr>
+<tr ><td><p>PowerShell</p></td>
+<td><p><code ><span>$</span> <em><span>&lt;venv&gt;</span></em><span>/bin/Activate.ps1</span></code></p></td>
+</tr>
+<tr class="row-even"><td rowspan="2"><p>Windows</p></td>
+<td><p>cmd.exe</p></td>
+<td><p><code ><span>C:\&gt;</span> <em><span>&lt;venv&gt;</span></em><span>\Scripts\activate.bat</span></code></p></td>
+</tr>
+<tr ><td><p>PowerShell</p></td>
+<td><p><code ><span>PS</span> <span>C:\&gt;</span> <em><span>&lt;venv&gt;</span></em><span>\Scripts\Activate.ps1</span></code></p></td>
+</tr>
+</tbody>
+</table>
