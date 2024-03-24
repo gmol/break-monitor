@@ -17,6 +17,7 @@ class WorkState(State):
         self.logger.debug(f"* WorkStare created [${self.timer}]")
         if context.get_work_start_time() <= 0:
             context.set_work_start_time_now()
+        self.context.get_light_controller().light_off()
 
     def evaluate(self, activity: Activity) -> None:
         self.logger.debug(f"WorkState evaluate")
@@ -26,7 +27,6 @@ class WorkState(State):
         self.logger.debug(f"WorkState evaluate after fix_timer, elapsed time: {elapsed_time}")
         if activity == Activity.IDLE:
             self.logger.info("----->  Idle activity move to rest")
-            self.context.light_off()
             # Create Break state and switch
             self.context.change_state(states.RestState.RestState(self.context))
         elif elapsed_time > OVERTIME:
@@ -39,9 +39,9 @@ class WorkState(State):
                                  .format(round(elapsed_time / 60),
                                          round(self.context.get_work_start_time()),
                                          round(current_time)))
-                self.context.light_on(LightEffect.BLINKING)
+                self.context.get_light_controller().light_on(LightEffect.BLINKING)
             else:
-                self.context.light_on(LightEffect.SOLID_RED)
+                self.context.get_light_controller().light_on(LightEffect.SOLID_RED)
         else:
             self.logger.info(
                 "----->  Working time! Timer[{}]".format(round(elapsed_time)))

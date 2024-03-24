@@ -38,7 +38,6 @@ class BlinkingLight(Light):
         self.logger.info("Solid Light ON color=[{}]".format(self.LEDs))
         blinkt.clear()
         self.stopThread = self.call_repeatedly(0.1, self.effect)
-    pass
 
     def effect(self):
         # self.logger.info("Blinking effect. LEDs.length=[{}]".format(len(self.LEDs)))
@@ -64,7 +63,6 @@ class BlinkingLight(Light):
         self.stop_worker()
         blinkt.clear()
         blinkt.show()
-        pass
 
     def stop_worker(self):
         if self.stopThread and self.worker:

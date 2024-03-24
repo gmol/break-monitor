@@ -15,7 +15,7 @@ class RestState(State):
         self.logger = logging.getLogger("RestState")
         self.logger.info("* RestState created")
         self.restTimerStart = self.context.get_current_time()
-        self.context.light_on(LightEffect.SOLID_GREEN)
+        self.context.get_light_controller().light_on(LightEffect.SOLID_GREEN)
 
     def evaluate(self, activity: Activity) -> None:
         if activity == Activity.WORKING:
@@ -24,18 +24,15 @@ class RestState(State):
             # You can avoid false work comebacks if you rest time is near the desk
             # Unless the activity evaluation exclude near desk presence as working time
 
-            # Adjust the working state timer by deducting a 'short' break time
-            # self.nextState.adjust_timer(-self.context.get_current_time() + self.restTimerStart)
-            self.context.light_off()
             self.context.change_state(states.WorkState.WorkState(self.context))
 
         current_time = self.context.get_current_time()
+
         if self.restTimerStart + REST_TIME < current_time:
             self.logger.info("Activity[{}] rest finish move to Idle state".format(activity))
             # Create Idle state and switch
-            self.context.light_off()
             self.context.change_state(IdleState(self.context))
-
-        self.logger.info("Activity[{}] resting. Timer[{}]"
-                         .format(activity, round(current_time - self.restTimerStart)))
-        self.context.light_on(LightEffect.SOLID_GREEN)
+        else:
+            self.logger.info("Activity[{}] resting. Timer[{}]"
+                             .format(activity, round(current_time - self.restTimerStart)))
+            self.context.get_light_controller().light_on(LightEffect.SOLID_GREEN)

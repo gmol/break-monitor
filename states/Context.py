@@ -29,11 +29,8 @@ class Context:
     def update_action(self, activity: Activity):
         self.state.evaluate(activity)
 
-    def light_on(self, light_mode, extra_config=None):
-        self.light_controller.on(light_mode, extra_config)
-
-    def light_off(self):
-        self.light_controller.off()
+    def get_light_controller(self):
+        return self.light_controller
 
     def get_current_time(self):
         if self.timeProvider is None:
@@ -43,7 +40,7 @@ class Context:
 
     def cleanup(self):
         self.logger.info('Turn off the light.')
-        self.light_controller.off()
+        self.light_controller.light_off()
 
     def reset_work_start_time(self):
         self.workStartTime = -1.0

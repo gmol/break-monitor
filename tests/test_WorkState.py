@@ -2,6 +2,7 @@ import logging
 import time
 from unittest import TestCase
 from unittest.mock import Mock
+from unittest.mock import call
 
 from light.LightController import LightController
 from states.Config import Activity, OVERTIME, OVERTIME_ALERT, LightEffect
@@ -19,6 +20,9 @@ class TestWorkState(TestCase):
         """
         # self.logger.debug(f">>>---> get_current_time method called while the state: ${self.context.state}")
         return time.time()
+
+    def light_on_peek(self, light_mode):
+        self.logger.debug(f"Mock light on: {light_mode}")
 
     def custom_time_provider(self, time_acceleration=OVERTIME):
         """
@@ -40,6 +44,7 @@ class TestWorkState(TestCase):
         self.logger = logging.getLogger("TestWorkState")
         self.logger.debug(">>>---> setUp")
         self.mock_light = Mock(spec=LightController)
+        self.mock_light.light_on.side_effect = self.light_on_peek
         self.mock_time_provider = Mock(spec=TimeProvider)
         # self.mock_time_provider.get_current_time.side_effect = lambda: time.time()
         # self.mock_time_provider.get_current_time.side_effect = [time.time(), time.time() + OVERTIME + 1]
@@ -52,21 +57,21 @@ class TestWorkState(TestCase):
         self.logger.debug("---> test_evaluate_idle_activity")
         working = WorkState(self.context)
         working.evaluate(Activity.IDLE)
-        self.mock_light.off.assert_called_once()
+        self.mock_light.light_off.assert_called_once()
         assert isinstance(self.context.state, RestState)
-        pass
 
     def test_evaluate_overtime(self):
         self.logger.debug("---> test_evaluate_overtime")
         self.mock_time_provider.get_current_time.side_effect = self.custom_time_provider()
         working = WorkState(self.context)
         working.fix_timer = Mock()
-
         # It is overtime the red light_controller should blink
         working.evaluate(Activity.WORKING)
-        self.mock_light.on.assert_called_with(LightEffect.SOLID_RED, None)
-        assert self.mock_light.on.call_count == 1
-        pass
+        # when Context is created it sets the state to IdleState thus the blue light
+        self.mock_light \
+            .light_on.assert_has_calls([call(LightEffect.SOLID_BLUE),
+                                        call(LightEffect.SOLID_RED)],
+                                       any_order=True)
 
     def test_evaluate_alert(self):
         self.logger.debug("---> test_evaluate_alert")
@@ -76,6 +81,9 @@ class TestWorkState(TestCase):
 
         # It is overtime the red light_controller should blink
         working.evaluate(Activity.WORKING)
-        self.mock_light.on.assert_called_with(LightEffect.BLINKING, None)
-        assert self.mock_light.on.call_count == 1
-        pass
+        # when Context is created it sets the state to IdleState thus the blue light
+        self.mock_light.light_on.assert_called_with(LightEffect.BLINKING)
+        self.mock_light \
+            .light_on.assert_has_calls([call(LightEffect.SOLID_BLUE),
+                                        call(LightEffect.BLINKING)],
+                                       any_order=True)

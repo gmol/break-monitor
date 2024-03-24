@@ -28,6 +28,5 @@ class MqttNotifier:
                 self.logger.error(f"Publish state [{payload}] to MQTT topic [{MqttConfig.TOPIC}] "
                                   f"to broker [{MqttConfig.HOST}], username[{MqttConfig.USERNAME}],"
                                   f" password[{MqttConfig.PASSWORD}] failed!")
-                pass
         else:
             self.logger.info("MQTT password not set. Skip publishing to MQTT.")

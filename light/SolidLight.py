@@ -1,56 +1,45 @@
-import logging
 import sys
+import logging
 
-from states import Config
-
-if 'win32' in sys.platform:
-    import light.FakeBlinkt as blinkt
+import colour
 if 'darwin' in sys.platform:
-    import light.FakeBlinkt as blinkt
+    import tests.neopixel as neopixel
 else:
-    import blinkt
+    import neopixel
 
 from light.Light import Light
+from states.Config import pixel_pin, num_pixels
+
+
+# if 'win32' in sys.platform:
+#     import light.FakeBlinkt as blinkt
+# if 'darwin' in sys.platform:
+#     import light.FakeBlinkt as blinkt
+# else:
+#     import blinkt
 
 
 class SolidLight(Light):
 
-    def __init__(self, config={"color": Config.LightColor.RED}):
+    def __init__(self, config: dict = {}):
         self.logger = logging.getLogger("SolidLight")
         self.logger.info("Solid Light created{}".format(config))
-        if "LEDs" in config:
-            self.colors = config["LEDs"]
-        else:
-            self.colors = [config["color"]]
-            self.logger.info("Color [{}]".format(self.colors))
-        self.brightness = 1.0
-        if "brightness" in config:
-            self.brightness = config["brightness"]
+        if "color" not in config:
+            raise ValueError("Color is required for SolidLight")
+        if "brightness" not in config:
+            raise ValueError("Brightness is required for SolidLight")
+        self.color: colour.Color = config["color"]
+        self.brightness: float = config["brightness"]
+        self.pixels = neopixel.NeoPixel(
+            pixel_pin, num_pixels, pixel_order=neopixel.RGB, brightness=self.brightness
+        )
 
     def on(self):
-        self.logger.info("Solid Light ON color=[{}]".format(self.colors))
-        blinkt.clear()
-
-        if len(self.colors) > 1:
-            self.logger.info("More than 1 color")
-            for i in range(len(self.colors)):
-                if self.colors[i]:
-                    rgb = [int(x * 255) for x in self.colors[i].value.rgb]
-                    # TODO I cannot remember what it is
-                    # TODO I think I know what it is - it is a temp brightness adjustment
-                    if rgb[0] == 255:
-                        # TODO fix this. Change config
-                        blinkt.set_pixel(7 - i, rgb[0], rgb[1], rgb[2], 0.05)
-                    else:
-                        blinkt.set_pixel(7 - i, rgb[0], rgb[1], rgb[2], self.brightness)
-        else:
-            rgb = [int(x * 255) for x in self.colors[0].rgb]
-            blinkt.set_all(rgb[0], rgb[1], rgb[2], self.brightness)
-        blinkt.show()
-        pass
+        self.logger.info("Solid Light ON color=[{}]".format(self.color))
+        self.pixels.fill((self.color.red, self.color.green, self.color.blue))
+        self.pixels.show()
 
     def off(self):
         self.logger.info("Solid Light OFF")
-        blinkt.clear()
-        blinkt.show()
-        pass
+        self.pixels.fill(0)
+        self.pixels.show()
