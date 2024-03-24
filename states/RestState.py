@@ -35,7 +35,8 @@ class RestState(State):
             # Create Idle state and switch
             self.context.light_off()
             self.context.change_state(IdleState(self.context))
+        else:
 
-        self.logger.info("Activity[{}] resting. Timer[{}]"
-                         .format(activity, round(current_time - self.restTimerStart)))
-        self.context.light_on(LightEffect.SOLID_GREEN)
+            self.logger.info("Activity[{}] resting. Timer[{}]"
+                             .format(activity, round(current_time - self.restTimerStart)))
+            self.context.light_on(LightEffect.SOLID_GREEN)
