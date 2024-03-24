@@ -31,6 +31,11 @@ class MqttConfig:
     USERNAME = "homeassistant"
 
 
+hcsr04_config = {
+    "trigger_pin": 23,
+    "echo_pin": 24
+}
+
 detection_strategy = {
     "AverageDistance": {
         "observation_window": 15,  # seconds
