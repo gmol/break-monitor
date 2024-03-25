@@ -36,8 +36,8 @@ class SolidLight(Light):
 
     def on(self):
         self.logger.info("Solid Light ON color=[{}]".format(self.color))
-        color255 = self.multiply_tuple(self.color.rgb, 255)
-        self.pixels.fill((color255.red, color255.green, color255.blue))
+        color255 = self.multiply_tuple((self.color.get_red(), self.color.get_green(), self.color.get_blue()), 255)
+        self.pixels.fill(color255)
         self.pixels.show()
 
     @staticmethod

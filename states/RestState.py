@@ -6,6 +6,8 @@ from states.IdleState import IdleState
 from states.State import State
 # from states.WorkState import WorkState
 import states.WorkState
+from states import Config
+
 
 
 class RestState(State):
@@ -15,7 +17,8 @@ class RestState(State):
         self.logger = logging.getLogger("RestState")
         self.logger.info("* RestState created")
         self.restTimerStart = self.context.get_current_time()
-        self.context.get_light_controller().light_on(LightEffect.SOLID_GREEN)
+        self._light_config = Config.light_config[LightEffect.SOLID_GREEN]
+        self.context.get_light_controller().light_on(self._light_config)
 
     def evaluate(self, activity: Activity) -> None:
         if activity == Activity.WORKING:
@@ -35,4 +38,4 @@ class RestState(State):
         else:
             self.logger.info("Activity[{}] resting. Timer[{}]"
                              .format(activity, round(current_time - self.restTimerStart)))
-            self.context.get_light_controller().light_on(LightEffect.SOLID_GREEN)
+            self.context.get_light_controller().light_on(self._light_config)
