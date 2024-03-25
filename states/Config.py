@@ -75,11 +75,11 @@ class LightBrightness(Enum):
 light_config = {
     LightEffect.SOLID_RED: {
         "color": LightColor.RED.value,
-        "brightness": LightBrightness.MIN.value
+        "brightness": 100
     },
     LightEffect.SOLID_GREEN: {
         "color": LightColor.GREEN.value,
-        "brightness": LightBrightness.MIN.value
+        "brightness": 50
     },
     LightEffect.SOLID_YELLOW: {
         "color": LightColor.YELLOW.value,
@@ -87,7 +87,7 @@ light_config = {
     },
     LightEffect.SOLID_BLUE: {
         "color": LightColor.BLUE.value,
-        "brightness": LightBrightness.MIN.value
+        "brightness": 10
     },
     LightEffect.SOLID_WHITE: {
         "color": LightColor.WHITE.value,

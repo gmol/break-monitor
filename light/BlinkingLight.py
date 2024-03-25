@@ -5,12 +5,12 @@ from threading import Event, Thread
 
 from states import Config
 
-if 'win32' in sys.platform:
-    import light.FakeBlinkt as blinkt
-if 'darwin' in sys.platform:
-    import light.FakeBlinkt as blinkt
-else:
-    import blinkt
+# if 'win32' in sys.platform:
+#     import light.FakeBlinkt as blinkt
+# if 'darwin' in sys.platform:
+#     import light.FakeBlinkt as blinkt
+# else:
+#     import blinkt
 
 from light.Light import Light
 
@@ -36,21 +36,21 @@ class BlinkingLight(Light):
 
     def on(self):
         self.logger.info("Solid Light ON color=[{}]".format(self.LEDs))
-        blinkt.clear()
+        # blinkt.clear()
         self.stopThread = self.call_repeatedly(0.1, self.effect)
 
     def effect(self):
         # self.logger.info("Blinking effect. LEDs.length=[{}]".format(len(self.LEDs)))
         assert len(self.LEDs) == 8, f'len(self.LEDs) > 8 and is [{len(self.LEDs)}]'
-        for i in range(len(self.LEDs)):
-            if self.LEDs[i]:
-                rgb = [int(x * 255) for x in self.LEDs[i]['color'].rgb]
-                blinkt.set_pixel(7 - i, rgb[0], rgb[1], rgb[2], self.LEDs[i]['brightness'])
-        blinkt.show()
-        time.sleep(10)
-        blinkt.clear()
-        blinkt.show()
-        time.sleep(0.1)
+        # for i in range(len(self.LEDs)):
+        #     if self.LEDs[i]:
+        #         rgb = [int(x * 255) for x in self.LEDs[i]['color'].rgb]
+        #         blinkt.set_pixel(7 - i, rgb[0], rgb[1], rgb[2], self.LEDs[i]['brightness'])
+        # blinkt.show()
+        # time.sleep(10)
+        # blinkt.clear()
+        # blinkt.show()
+        # time.sleep(0.1)
         # self.logger.info("Blinking effect - 1blinked")
 
     def off(self):
@@ -61,8 +61,8 @@ class BlinkingLight(Light):
         #     GPIO.setmode(GPIO.BCM)
         #     GPIO.setwarnings(False)
         self.stop_worker()
-        blinkt.clear()
-        blinkt.show()
+        # blinkt.clear()
+        # blinkt.show()
 
     def stop_worker(self):
         if self.stopThread and self.worker:
