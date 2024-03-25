@@ -54,6 +54,7 @@ class LightColor(Enum):
     WHITE = Color("white")
     YELLOW = Color("yellow")
     BLUE = Color("blue")
+    ORANGE= Color("orange")
 
 
 class LightEffect(Enum):
@@ -65,6 +66,11 @@ class LightEffect(Enum):
     BLINKING = 6
     SOLID_SELECTED_BLUE = 7
     SOLID_ARBITRARY = 8
+    SOLID_ORANGE = 9
+    IDLE = 10
+    OVERTIME = 11
+    ALERT = 12
+    REST = 13
 
 
 class LightBrightness(Enum):
@@ -73,13 +79,13 @@ class LightBrightness(Enum):
 
 
 light_config = {
-    LightEffect.SOLID_RED: {
+    LightEffect.OVERTIME: {
         "color": LightColor.RED.value,
         "brightness": 100
     },
-    LightEffect.SOLID_GREEN: {
+    LightEffect.IDLE: {
         "color": LightColor.GREEN.value,
-        "brightness": 50
+        "brightness": 10
     },
     LightEffect.SOLID_YELLOW: {
         "color": LightColor.YELLOW.value,
@@ -93,7 +99,11 @@ light_config = {
         "color": LightColor.WHITE.value,
         "brightness": LightBrightness.MIN.value
     },
-    LightEffect.BLINKING: {
+    LightEffect.REST: {
+        "color": LightColor.ORANGE.value,
+        "brightness": 50
+    },
+    LightEffect.ALERT: {
         "color": LightColor.RED.value,
         "brightness": LightBrightness.MAX.value,
         "blinking": True,

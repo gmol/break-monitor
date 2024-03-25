@@ -40,10 +40,10 @@ class WorkState(State):
                                  .format(round(elapsed_time / 60),
                                          round(self.context.get_work_start_time()),
                                          round(current_time)))
-                light_config = Config.light_config[LightEffect.BLINKING]
+                light_config = Config.light_config[LightEffect.ALERT]
                 self.context.get_light_controller().light_on(light_config)
             else:
-                light_config = Config.light_config[LightEffect.SOLID_RED]
+                light_config = Config.light_config[LightEffect.OVERTIME]
                 self.context.get_light_controller().light_on(light_config)
         else:
             self.logger.info(

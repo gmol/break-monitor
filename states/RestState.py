@@ -17,7 +17,7 @@ class RestState(State):
         self.logger = logging.getLogger("RestState")
         self.logger.info("* RestState created")
         self.restTimerStart = self.context.get_current_time()
-        self._light_config = Config.light_config[LightEffect.SOLID_GREEN]
+        self._light_config = Config.light_config[LightEffect.REST]
         self.context.get_light_controller().light_on(self._light_config)
 
     def evaluate(self, activity: Activity) -> None:
@@ -26,7 +26,6 @@ class RestState(State):
             # TODO This might be optional. Do not come back to WorkState after the break started
             # You can avoid false work comebacks if you rest time is near the desk
             # Unless the activity evaluation exclude near desk presence as working time
-
             self.context.change_state(states.WorkState.WorkState(self.context))
 
         current_time = self.context.get_current_time()
@@ -38,4 +37,4 @@ class RestState(State):
         else:
             self.logger.info("Activity[{}] resting. Timer[{}]"
                              .format(activity, round(current_time - self.restTimerStart)))
-            self.context.get_light_controller().light_on(self._light_config)
+            # self.context.get_light_controller().light_on(self._light_config)

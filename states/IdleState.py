@@ -18,7 +18,7 @@ class IdleState(State):
         self.logger = logging.getLogger("IdleState")
         self.logger.info("* IdleState created")
         self.context.reset_work_start_time()
-        self._light_config = Config.light_config[LightEffect.SOLID_BLUE]
+        self._light_config = Config.light_config[LightEffect.IDLE]
         self.context.get_light_controller().light_on(self._light_config)
 
     def evaluate(self, activity: Activity) -> None:
@@ -27,7 +27,7 @@ class IdleState(State):
             # Create Work state and switch
             from states.WorkState import WorkState
             self.context.change_state(WorkState(self.context))
-        elif activity == Activity.IDLE:
-            self.logger.info("Idle activity")
-            self.logger.info("SELECTED SOLID light config {}".format(self._light_config))
-            self.context.get_light_controller().light_on(self._light_config)
+        # elif activity == Activity.IDLE:
+        #     self.logger.info("Idle activity")
+        #     self.logger.info("SELECTED SOLID light config {}".format(self._light_config))
+        #     self.context.get_light_controller().light_on(self._light_config)
