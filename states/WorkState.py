@@ -43,7 +43,7 @@ class WorkState(State):
                 light_config = Config.light_config[LightEffect.BLINKING]
                 self.context.get_light_controller().light_on(light_config)
             else:
-                light_config = Config.light_config[LightEffect.SOLID_GREEN]
+                light_config = Config.light_config[LightEffect.SOLID_RED]
                 self.context.get_light_controller().light_on(light_config)
         else:
             self.logger.info(
