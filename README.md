@@ -44,13 +44,12 @@ adafruit-circuitpython-neopixel
 # Onetime system setup
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt install git
-sudo apt install python3-dev
-sudo apt install python3-venv
-sudo apt-get install pigpio python-pigpio python3-pigpio
+sudo apt install git python3-dev python3-venv pigpio python-pigpio python3-pigpio
 
-# start pigpio (this might need a start every time the system starts)
-sudo pigpiod
+# start pigpio
+sudo systemctl enable pigpiod
+sudo systemctl start pigpiod 
+
 
 # Project setup
 export myproject=my-project

@@ -1,3 +1,5 @@
+RGB = "RGB"
+
 class NeoPixel:
     """
     Fake NeoPixel class for testing on non-Raspberry Pi platforms.
@@ -13,4 +15,10 @@ class NeoPixel:
         auto_write: bool = True,
         pixel_order: str = None
     ):
+        pass
+
+    def fill(self, color):
+        pass
+
+    def show(self):
         pass

@@ -11,7 +11,6 @@ from states.State import State
 
 
 class IdleState(State):
-
     NUMBER_OF_TRIES = 30
 
     def __init__(self, context):
@@ -19,7 +18,8 @@ class IdleState(State):
         self.logger = logging.getLogger("IdleState")
         self.logger.info("* IdleState created")
         self.context.reset_work_start_time()
-        self.context.get_light_controller().light_on(LightEffect.SOLID_BLUE)
+        self._light_config = Config.light_config[LightEffect.SOLID_BLUE]
+        self.context.get_light_controller().light_on(self._light_config)
 
     def evaluate(self, activity: Activity) -> None:
         if activity == Activity.WORKING:
@@ -29,5 +29,5 @@ class IdleState(State):
             self.context.change_state(WorkState(self.context))
         elif activity == Activity.IDLE:
             self.logger.info("Idle activity")
-            self.logger.info("SELECTED SOLID light config {}".format(LightEffect.SOLID_BLUE))
-            self.context.get_light_controller().light_on(LightEffect.SOLID_BLUE)
+            self.logger.info("SELECTED SOLID light config {}".format(self._light_config))
+            self.context.get_light_controller().light_on(self._light_config)

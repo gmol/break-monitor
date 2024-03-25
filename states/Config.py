@@ -97,6 +97,6 @@ light_config = {
         "color": LightColor.RED.value,
         "brightness": LightBrightness.MAX.value,
         "blinking": True,
-        "blinking_speed": 1  # blinks per second
+        "blinking_speed": 1.0  # blinks per second
     }
 }

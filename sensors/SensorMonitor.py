@@ -11,44 +11,49 @@ from states import Config
 class SensorMonitor:
 
     def __init__(self, work_detector: WorkDetector, sonar: Sonar):
-        self.logger = logging.getLogger("SensorMonitor")
-        self.work_detector = work_detector
-        self.sonar = sonar
+        self._logger = logging.getLogger("SensorMonitor")
+        self._work_detector = work_detector
+        self._sonar = sonar
 
-    def start(self):
-        self.schedule_repeatedly(1, self.monitor)
-        self.work_detector.start()
+    # def start(self):
+    #     self._schedule_repeatedly(1, self._collect_data)
+    #     self.work_detector.start()
 
-    def monitor(self):
-        # while True:
-        distance = self.sonar.get_distance()
+    def start_loop(self):
+        while True:
+            self._collect_data()
+            self._work_detector.detect()
+            time.sleep(1)
+
+    def _collect_data(self):
+        distance = self._sonar.get_distance()
         # self.logger.info("Distance[{}]".format(round(distance)))  # TODO REMOVE
         if distance:
             timestamp = round(time.time())  # in seconds [int]
-            sample = Sample(timestamp, distance)
-            self.work_detector.add_sample(sample)
+            self._work_detector.add_sample(Sample(timestamp, distance))
+        # TODO what is this for? Maybe this should be moved to start_loop
         if Config.IS_DEBUG:
-            self.logger.debug("Calling sleep(5)")
+            self._logger.debug("Calling sleep(5)")
             time.sleep(5)
         else:
-            self.logger.debug("Calling sleep(1)")
+            self._logger.debug("Calling sleep(1)")
             time.sleep(1)
 
-    def schedule_repeatedly(self, interval, func, *args):
-        """
-        Schedules a function to be called repeatedly with a specified interval.
-
-        :param interval: Time interval between function calls in seconds.
-        :param func: Function to be called repeatedly.
-        :param args: Arguments to be passed to the function.
-        """
-        # self.logger.info("* call_repeatedly interval [{}]".format(interval))
-        stopped = Event()
-
-        def loop():
-            while not stopped.wait(interval):  # the first call is in `interval` secs
-                # self.logger.info(f"Thread's loop: ${func}")
-                func(*args)
-
-        Thread(target=loop).start()
-        return stopped.set
+    # def _schedule_repeatedly(self, interval, func, *args):
+    #     """
+    #     Schedules a function to be called repeatedly with a specified interval.
+    #
+    #     :param interval: Time interval between function calls in seconds.
+    #     :param func: Function to be called repeatedly.
+    #     :param args: Arguments to be passed to the function.
+    #     """
+    #     # self.logger.info("* call_repeatedly interval [{}]".format(interval))
+    #     stopped = Event()
+    #
+    #     def loop():
+    #         while not stopped.wait(interval):  # the first call is in `interval` secs
+    #             # self.logger.info(f"Thread's loop: ${func}")
+    #             func(*args)
+    #
+    #     Thread(target=loop).start()
+    #     return stopped.set

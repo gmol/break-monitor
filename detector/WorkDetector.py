@@ -1,6 +1,7 @@
 import logging
 from threading import Event, Thread
 
+from detector import DetectionStrategy
 from detector.DistanceThresholdCounter import DistanceThresholdCounter
 from detector.Sample import Sample
 from states import Config
@@ -11,45 +12,55 @@ from states.Context import Context
 
 class WorkDetector:
 
-    def __init__(self, context: Context):
-        self.measurements = []
-        self.logger = logging.getLogger("WorkDetector")
-        self.context = context
+    def __init__(self, context: Context, detection_strategy: DetectionStrategy):
+        self._measurements = []
+        self._logger = logging.getLogger("WorkDetector")
+        self._context = context
+        self._detectionStrategy = detection_strategy
 
     def add_sample(self, sample: Sample):
-        self.measurements.append(sample)
+        self._measurements.append(sample)
         # self.detect()
         self.clean_up()
 
-    def start(self):
-        # TODO Strategy is not configurable
-        if Config.IS_DEBUG:
-            self.call_repeatedly(5, self.detect, DistanceThresholdCounter())
-        else:
-            self.call_repeatedly(1, self.detect, DistanceThresholdCounter())
+    # def start(self):
+    #     # TODO Strategy is not configurable
+    #     if Config.IS_DEBUG:
+    #         self.call_repeatedly(5, self.detect, DistanceThresholdCounter())
+    #     else:
+    #         self.call_repeatedly(1, self.detect, DistanceThresholdCounter())
 
-    def detect(self, strategy):
-        self.logger.info("* detect")
-        if len(self.measurements) > 0:
-            work_detected = strategy.detect(self.measurements)
+    # def detect(self, strategy):
+    #     self._logger.info("* detect")
+    #     if len(self._measurements) > 0:
+    #         work_detected = strategy.detect(self._measurements)
+    #         if work_detected:
+    #             self._context.update_action(Activity.WORKING)
+    #         else:
+    #             self._context.update_action(Activity.IDLE)
+
+    def detect(self):
+        self._logger.info("* detect")
+        if len(self._measurements) > 0:
+            work_detected = self._detectionStrategy.detect(self._measurements)
             if work_detected:
-                self.context.update_action(Activity.WORKING)
+                self._context.update_action(Activity.WORKING)
             else:
-                self.context.update_action(Activity.IDLE)
+                self._context.update_action(Activity.IDLE)
 
     def clean_up(self):
-        if len(self.measurements) > 1000:
+        if len(self._measurements) > 1000:
             # TODO provide a better cleanup
-            del self.measurements[0]
+            del self._measurements[0]
 
-    def call_repeatedly(self, interval, func, *args):
-        # self.logger.info("* call_repeatedly interval [{}]".format(interval))
-        stopped = Event()
-
-        def loop():
-            while not stopped.wait(interval):  # the first call is in `interval` secs
-                # self.logger.info(f"Thread's loop: ${func}")
-                func(*args)
-
-        Thread(target=loop).start()
-        return stopped.set
+    # def call_repeatedly(self, interval, func, *args):
+    #     # self.logger.info("* call_repeatedly interval [{}]".format(interval))
+    #     stopped = Event()
+    #
+    #     def loop():
+    #         while not stopped.wait(interval):  # the first call is in `interval` secs
+    #             # self.logger.info(f"Thread's loop: ${func}")
+    #             func(*args)
+    #
+    #     Thread(target=loop).start()
+    #     return stopped.set

@@ -3,9 +3,11 @@ import argparse
 import logging
 from time import sleep
 
+from detector.DistanceThresholdCounter import DistanceThresholdCounter
 from detector.WorkDetector import WorkDetector
 from mqtt.MqttNotifier import MqttNotifier
 from sensors.FakeSonar import FakeSonar
+from sensors.HCSR04 import HCSR04
 from sensors.SensorMonitor import SensorMonitor
 
 from states import Config
@@ -51,15 +53,15 @@ if __name__ == '__main__':
     # if it is a windows platform or darwin (mac)
     if 'win32' in sys.platform or 'darwin' in sys.platform:
         logger.info(">>>>> PC environment <<<<<")
-        monitor = SensorMonitor(work_detector=WorkDetector(ctxt), sonar=FakeSonar())
+        monitor = SensorMonitor(work_detector=WorkDetector(ctxt, DistanceThresholdCounter()), sonar=FakeSonar())
     else:
         logger.info(">>>>> PI environment <<<<<")
-        from sensors.GroveUltrasonicRanger import GroveUltrasonicRanger
-        monitor = SensorMonitor(work_detector=WorkDetector(ctxt), sonar=GroveUltrasonicRanger())
+        monitor = SensorMonitor(work_detector=WorkDetector(ctxt, DistanceThresholdCounter()), sonar=HCSR04())
 
     print(f"OVERTIME [${Config.OVERTIME}] seconds and REST time [${Config.REST_TIME}] seconds")
 
-    monitor.start()
+    # monitor.start()
+    monitor.start_loop()
     # ctxt.update_action(Activity.WORKING)
     # ctxt.update_action(Activity.IDLE)
     # ctxt.update_action(Activity.WORKING)

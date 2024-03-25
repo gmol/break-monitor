@@ -12,18 +12,18 @@ class LightController(ABC):
         self.logger = logging.getLogger("LightController")
         self.logger.info("LightController created")
         self.light = None
-        self.currentEffect = None
+        self.currentLightConfig = None
 
-    def light_on(self, effect):
-        if "color" not in effect:
+    def light_on(self, light_config):
+        if "color" not in light_config:
             raise ValueError("'color' is required for light config")
-        if "brightness" not in effect:
+        if "brightness" not in light_config:
             raise ValueError("'brightness' is required for light config")
-        if self.currentEffect != effect:
-            self.currentEffect = effect
-            light_config = Config.light_config[self.currentEffect]
+        if self.currentLightConfig != light_config:
+            self.currentLightConfig = light_config
+            # light_config = Config.light_config[self.currentEffect]
             self.logger.info("Light Config[{}]".format(light_config))
-            if self.currentEffect == Config.LightEffect.BLINKING:
+            if self.currentLightConfig == Config.LightEffect.BLINKING:
                 self.light = BlinkingLight(light_config)
             else:
                 self.light = SolidLight(light_config)

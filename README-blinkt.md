@@ -97,6 +97,24 @@ python -m venv venv
 ./venv/bin/python main.py
 ```
 
+`startup.sh` file:
+
+```shell
+${full-path}/venv/bin/python ${full-path}/main.py
+```
+
+### Start at boot
+
+```shell
+chmod +x /home/pi/startup.sh
+crontab -e
+```
+
+```shell
+# Add the following line to cron: 
+@reboot /home/pi/startup.sh
+```
+
 ### Activate venv
 
 <table>
