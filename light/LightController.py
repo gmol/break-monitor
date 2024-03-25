@@ -26,10 +26,10 @@ class LightController(ABC):
             self.logger.info("Light Config[{}]".format(light_config))
             # TODO FIX this check for for the blinking light does not work
             # Check the 'blinking' property from the light_config instead
-            if self.currentLightConfig["blinking"]:
-                self.light = SolidLight(light_config)
-            else:
-                self.light = SolidLight(light_config)
+            # if "blinking" in self.currentLightConfig:
+            #     self.light = SolidLight(light_config)
+            # else:
+            self.light = SolidLight(light_config)
             self.light.on()
 
     def light_off(self):

@@ -9,7 +9,6 @@ import states.WorkState
 from states import Config
 
 
-
 class RestState(State):
 
     def __init__(self, context: Context):
