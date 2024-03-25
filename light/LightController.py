@@ -32,5 +32,5 @@ class LightController(ABC):
     def light_off(self):
         if self.light:
             self.logger.info("Light OFF")
-            self.light.light_off()
+            self.light.off()
         self.light = None
