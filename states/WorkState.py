@@ -5,6 +5,7 @@ import states.RestState
 from states.Config import LightEffect, OVERTIME, Activity, OVERTIME_ALERT
 from states.Context import Context
 from states.State import State
+from states import Config
 
 
 class WorkState(State):
@@ -39,13 +40,16 @@ class WorkState(State):
                                  .format(round(elapsed_time / 60),
                                          round(self.context.get_work_start_time()),
                                          round(current_time)))
-                self.context.get_light_controller().light_on(LightEffect.BLINKING)
+                light_config = Config.light_config[LightEffect.BLINKING]
+                self.context.get_light_controller().light_on(light_config)
             else:
-                self.context.get_light_controller().light_on(LightEffect.SOLID_RED)
+                light_config = Config.light_config[LightEffect.SOLID_GREEN]
+                self.context.get_light_controller().light_on(light_config)
         else:
             self.logger.info(
                 "----->  Working time! Timer[{}]".format(round(elapsed_time)))
 
+    # TODO double check this. it might be not necessary as I improve timer handling
     # when PI is turned on it looks like it starts where it stopped and the timer is set to the previous date
     def fix_timer(self):
         self.logger.debug(f"WorkState timer fix")
