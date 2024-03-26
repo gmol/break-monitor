@@ -27,7 +27,6 @@ class SensorMonitor:
 
     def _collect_data(self):
         distance = self._sonar.get_distance()
-        # self.logger.info("Distance[{}]".format(round(distance)))  # TODO REMOVE
         if distance:
             timestamp = round(time.time())  # in seconds [int]
             self._work_detector.add_sample(Sample(timestamp, distance))
@@ -35,9 +34,9 @@ class SensorMonitor:
         if Config.IS_DEBUG:
             self._logger.debug("Calling sleep(5)")
             time.sleep(5)
-        else:
-            self._logger.debug("Calling sleep(1)")
-            time.sleep(1)
+        # else:
+        #     self._logger.debug("Calling sleep(1)")
+        #     time.sleep(1)
 
     # def _schedule_repeatedly(self, interval, func, *args):
     #     """

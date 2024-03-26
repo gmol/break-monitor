@@ -27,6 +27,7 @@ class Context:
             self.mqttNotifier.publish_state(state)
 
     def update_action(self, activity: Activity):
+        self.logger.info(f"Update action ${activity}")
         self.state.evaluate(activity)
 
     def get_light_controller(self):

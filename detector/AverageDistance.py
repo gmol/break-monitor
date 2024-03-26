@@ -28,7 +28,7 @@ class AverageDistance(DetectionStrategy):
         #     return False
         recent_distance_values = map(lambda s: s.distance, recent_samples)
         average_distance = statistics.mean(recent_distance_values)
-        self.logger.info("Obseved window[{}] Average distance[{}]".format(len(recent_samples), average_distance))
+        self.logger.info("Observed window[{}] Average distance[{}]".format(len(recent_samples), average_distance))
         if average_distance < self.DISTANCE_THRESHOLD:
             return True
         return False

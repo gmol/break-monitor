@@ -9,7 +9,7 @@ class HCSR04(Sonar):
     # Get the distance in cm
     def get_distance(self):
         distance = self.sensor.distance * 100
-        self.logger.debug("Distance[{}]".format(round(distance)))
+        self.logger.debug("Distance [{}] cm".format(round(distance)))
         return distance
 
     def __init__(self):

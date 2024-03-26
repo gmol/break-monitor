@@ -31,7 +31,6 @@ class WorkDetector:
     #         self.call_repeatedly(1, self.detect, DistanceThresholdCounter())
 
     # def detect(self, strategy):
-    #     self._logger.info("* detect")
     #     if len(self._measurements) > 0:
     #         work_detected = strategy.detect(self._measurements)
     #         if work_detected:
@@ -47,6 +46,8 @@ class WorkDetector:
                 self._context.update_action(Activity.WORKING)
             else:
                 self._context.update_action(Activity.IDLE)
+        else:
+            self._logger.info("No measurements")
 
     def clean_up(self):
         if len(self._measurements) > 1000:
