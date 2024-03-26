@@ -22,6 +22,7 @@ class IdleState(State):
         self.context.get_light_controller().light_on(self._light_config)
 
     def evaluate(self, activity: Activity) -> None:
+        self.logger.info("IdleState evaluate")
         if activity == Activity.WORKING:
             self.logger.info("Working activity move to WorkState")
             # Create Work state and switch

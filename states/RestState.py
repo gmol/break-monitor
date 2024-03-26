@@ -20,6 +20,7 @@ class RestState(State):
         self.context.get_light_controller().light_on(self._light_config)
 
     def evaluate(self, activity: Activity) -> None:
+        self.logger.info("RestState evaluate")
         if activity == Activity.WORKING:
             self.logger.info("working move to WorkState")
             # TODO This might be optional. Do not come back to WorkState after the break started
