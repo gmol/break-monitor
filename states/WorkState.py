@@ -48,8 +48,7 @@ class WorkState(State):
         else:
             self.logger.info(
                 "----->  Working time! Timer[{}]. Time left[{}]"
-                .format(round(elapsed_time))
-                .format(round(OVERTIME - elapsed_time)))
+                .format(round(elapsed_time), round(OVERTIME - elapsed_time)))
 
     # TODO double check this. it might be not necessary as I improve timer handling
     # when PI is turned on it looks like it starts where it stopped and the timer is set to the previous date
