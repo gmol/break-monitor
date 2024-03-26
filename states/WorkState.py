@@ -25,7 +25,7 @@ class WorkState(State):
         self.fix_timer()
         elapsed_time = self.context.get_elapsed_time()
         current_time = self.context.get_current_time()
-        self.logger.debug(f"WorkState evaluate after fix_timer, elapsed time: {elapsed_time}")
+        self.logger.debug(f"WorkState evaluate after fix_timer, elapsed time: {round(elapsed_time)}")
         if activity == Activity.IDLE:
             self.logger.info("----->  Idle activity move to rest")
             # Create Break state and switch
