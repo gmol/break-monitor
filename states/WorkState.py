@@ -47,12 +47,14 @@ class WorkState(State):
                 self.context.get_light_controller().light_on(light_config)
         else:
             self.logger.info(
-                "----->  Working time! Timer[{}]".format(round(elapsed_time)))
+                "----->  Working time! Timer[{}]. Time left[{}]"
+                .format(round(elapsed_time))
+                .format(round(OVERTIME - elapsed_time)))
 
     # TODO double check this. it might be not necessary as I improve timer handling
     # when PI is turned on it looks like it starts where it stopped and the timer is set to the previous date
     def fix_timer(self):
-        self.logger.debug(f"WorkState timer fix")
+        # self.logger.debug(f"WorkState timer fix")
         current_time = self.context.get_current_time()
         start_time = self.context.get_work_start_time()
         time_difference = current_time - start_time
