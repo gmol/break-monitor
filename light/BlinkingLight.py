@@ -17,7 +17,7 @@ from light.Light import Light
 
 class BlinkingLight(Light):
 
-    def __init__(self, config={"color": Config.LightColor.RED}):
+    def __init__(self, config):
         self.worker: Thread = None
         self.stopThread = None
         self.LEDs = []

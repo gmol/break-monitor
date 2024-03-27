@@ -9,7 +9,7 @@ from unittest.mock import patch
 from colour import Color
 
 from light.LightController import LightController
-from states.Config import LightEffect, Activity
+from states.Config import LightEffect, Activity, light_config
 from states.Context import Context
 from states.IdleState import IdleState
 from states.TimeProvider import TimeProvider
@@ -52,7 +52,7 @@ class TestIdleState(TestCase):
     def test_evaluate_idle(self):
         idle_state = IdleState(self.context)
         idle_state.evaluate(Activity.IDLE)
-        self.mock_light.light_on.assert_called_with(LightEffect.SOLID_BLUE)
+        self.mock_light.light_on.assert_called_with(light_config[LightEffect.IDLE])
 
     def test_color(self):
         r = Color("red")

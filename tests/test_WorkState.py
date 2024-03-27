@@ -4,8 +4,10 @@ from unittest import TestCase
 from unittest.mock import Mock
 from unittest.mock import call
 
+from colour import Color
+
 from light.LightController import LightController
-from states.Config import Activity, OVERTIME, OVERTIME_ALERT, LightEffect
+from states.Config import Activity, OVERTIME, OVERTIME_ALERT, LightEffect, light_config
 from states.Context import Context
 from states.RestState import RestState
 from states.TimeProvider import TimeProvider
@@ -69,8 +71,8 @@ class TestWorkState(TestCase):
         working.evaluate(Activity.WORKING)
         # when Context is created it sets the state to IdleState thus the blue light
         self.mock_light \
-            .light_on.assert_has_calls([call(LightEffect.SOLID_BLUE),
-                                        call(LightEffect.SOLID_RED)],
+            .light_on.assert_has_calls([call({'color': Color("green"), 'brightness': 10}),
+                                        call({'color': Color("red"), 'brightness': 100})],
                                        any_order=True)
 
     def test_evaluate_alert(self):
@@ -82,8 +84,8 @@ class TestWorkState(TestCase):
         # It is overtime the red light_controller should blink
         working.evaluate(Activity.WORKING)
         # when Context is created it sets the state to IdleState thus the blue light
-        self.mock_light.light_on.assert_called_with(LightEffect.BLINKING)
+        self.mock_light.light_on.assert_called_with(light_config[LightEffect.ALERT])
         self.mock_light \
-            .light_on.assert_has_calls([call(LightEffect.SOLID_BLUE),
-                                        call(LightEffect.BLINKING)],
+            .light_on.assert_has_calls([call(light_config[LightEffect.IDLE]),
+                                        call(light_config[LightEffect.ALERT])],
                                        any_order=True)

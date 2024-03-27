@@ -1,6 +1,6 @@
 import logging
 
-from states.Config import LightEffect, LightColor, Activity, REST_TIME
+from states.Config import LightEffect, Activity, REST_TIME
 from states.Context import Context
 from states.IdleState import IdleState
 from states.State import State

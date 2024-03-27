@@ -5,7 +5,7 @@ from time import sleep
 
 from helpers.ip_address import get_last_ip_number_in_bin_array
 from states import Config
-from states.Config import LightEffect, LightColor, Activity
+from states.Config import LightEffect, Activity
 # from states.Context import Context
 from states.State import State
 

@@ -3,8 +3,10 @@ import time
 from unittest import TestCase
 from unittest.mock import Mock
 
+from colour import Color
+
 from light.LightController import LightController
-from states.Config import Activity, OVERTIME, REST_TIME, LightEffect
+from states.Config import Activity, REST_TIME, light_config, LightEffect
 from states.Context import Context
 from states.IdleState import IdleState
 from states.RestState import RestState
@@ -38,9 +40,9 @@ class TestRestState(TestCase):
         start_time = time.time()
         self.mock_time_provider.get_current_time.side_effect = [start_time, start_time + REST_TIME + 1]
         rest_state = RestState(self.context)
-        self.mock_light.light_on.assert_called_with(LightEffect.SOLID_GREEN)
+        self.mock_light.light_on.assert_called_with(light_config[LightEffect.REST])
         rest_state.evaluate(Activity.IDLE)
         # Verify the transition to IdleState
-        self.mock_light.light_on.assert_called_with(LightEffect.SOLID_BLUE)
+        self.mock_light.light_on.assert_called_with(light_config[LightEffect.IDLE])
         assert isinstance(self.context.state, IdleState)
 

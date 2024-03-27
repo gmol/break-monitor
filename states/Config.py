@@ -48,29 +48,11 @@ detection_strategy = {
 }
 
 
-class LightColor(Enum):
-    RED = Color("red")
-    GREEN = Color("green")
-    WHITE = Color("white")
-    YELLOW = Color("yellow")
-    BLUE = Color("blue")
-    ORANGE= Color("orange")
-
-
 class LightEffect(Enum):
-    SOLID_RED = 1
-    SOLID_GREEN = 2
-    SOLID_YELLOW = 3
-    SOLID_WHITE = 4
-    SOLID_BLUE = 5
-    BLINKING = 6
-    SOLID_SELECTED_BLUE = 7
-    SOLID_ARBITRARY = 8
-    SOLID_ORANGE = 9
-    IDLE = 10
-    OVERTIME = 11
-    ALERT = 12
-    REST = 13
+    IDLE = 1
+    REST = 2
+    OVERTIME = 3
+    ALERT = 4
 
 
 class LightBrightness(Enum):
@@ -79,32 +61,20 @@ class LightBrightness(Enum):
 
 
 light_config = {
-    LightEffect.OVERTIME: {
-        "color": LightColor.RED.value,
-        "brightness": 100
-    },
     LightEffect.IDLE: {
-        "color": LightColor.GREEN.value,
+        "color": Color("green"),
         "brightness": 10
-    },
-    LightEffect.SOLID_YELLOW: {
-        "color": LightColor.YELLOW.value,
-        "brightness": LightBrightness.MIN.value
-    },
-    LightEffect.SOLID_BLUE: {
-        "color": LightColor.BLUE.value,
-        "brightness": 10
-    },
-    LightEffect.SOLID_WHITE: {
-        "color": LightColor.WHITE.value,
-        "brightness": LightBrightness.MIN.value
     },
     LightEffect.REST: {
-        "color": LightColor.ORANGE.value,
+        "color": Color("yellow"),
         "brightness": 50
     },
+    LightEffect.OVERTIME: {
+        "color": Color("red"),
+        "brightness": 100
+    },
     LightEffect.ALERT: {
-        "color": LightColor.RED.value,
+        "color": Color("purple"),
         "brightness": LightBrightness.MAX.value,
         "blinking": True,
         "blinking_speed": 1.0  # blinks per second
