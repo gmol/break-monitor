@@ -51,7 +51,7 @@ class DistanceThresholdCounterCoefficientVar(DistanceThresholdCounter):
     def calculate_cv(self, data):
         n = 30
         if len(data) < n:
-            self.logger.info("Error: Data array should have at least {} samples.", n)
+            self.logger.info("Error: Data array should have at least {} samples.".format(n))
             return None
         else:
             last_n_samples = data[-n:]
