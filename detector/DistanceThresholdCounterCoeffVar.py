@@ -55,7 +55,9 @@ class DistanceThresholdCounterCoefficientVar(DistanceThresholdCounter):
             return None
         else:
             last_n_samples = map(lambda s: s.distance, data[-n:])
-            self.logger.info("Last n samples: {}".format(last_n_samples))
+            # self.logger.info("Last n samples: {}".format(last_n_samples))
+            for s in last_n_samples:
+                self.logger.info("Sample: {}".format(s))
             # last_n_samples = data[-n:]
             mean = np.mean(last_n_samples)
             std_dev = np.std(last_n_samples, ddof=1)  # Use ddof=1 to calculate unbiased estimate of standard deviation
