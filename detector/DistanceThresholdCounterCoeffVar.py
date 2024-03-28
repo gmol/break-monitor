@@ -54,7 +54,7 @@ class DistanceThresholdCounterCoefficientVar(DistanceThresholdCounter):
             self.logger.info("Error: Data array should have at least {} samples.".format(n))
             return None
         else:
-            last_n_samples = map(lambda s: s.distance, data[-n:])
+            last_n_samples = list(map(lambda s: s.distance, data[-n:]))
             # self.logger.info("Last n samples: {}".format(last_n_samples))
             for s in last_n_samples:
                 self.logger.info("Sample: {}".format(s))
