@@ -4,6 +4,7 @@ import logging
 from time import sleep
 
 from detector.DistanceThresholdCounter import DistanceThresholdCounter
+from detector.DistanceThresholdCounterCoeffVar import DistanceThresholdCounterCoefficientVar
 from detector.WorkDetector import WorkDetector
 from mqtt.MqttNotifier import MqttNotifier
 from sensors.FakeSonar import FakeSonar
@@ -56,7 +57,7 @@ if __name__ == '__main__':
         monitor = SensorMonitor(work_detector=WorkDetector(ctxt, DistanceThresholdCounter()), sonar=FakeSonar())
     else:
         logger.info(">>>>> PI environment <<<<<")
-        monitor = SensorMonitor(work_detector=WorkDetector(ctxt, DistanceThresholdCounter()), sonar=HCSR04())
+        monitor = SensorMonitor(work_detector=WorkDetector(ctxt, DistanceThresholdCounterCoefficientVar()), sonar=HCSR04())
 
     print(f"OVERTIME [${Config.OVERTIME}] seconds and REST time [${Config.REST_TIME}] seconds")
 

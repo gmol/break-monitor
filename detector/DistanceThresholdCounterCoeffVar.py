@@ -11,8 +11,8 @@ import numpy as np
 
 
 class DistanceThresholdCounterCoefficientVar(DistanceThresholdCounter):
-    OBSERVATION_WINDOW = Config.detection_strategy["DistanceThresholdCounterCoefficientVar"]["observation_window"]
-    DISTANCE_THRESHOLD = Config.detection_strategy["DistanceThresholdCounterCoefficientVar"]["distance_threshold"]
+    OBSERVATION_WINDOW = Config.detection_strategy["DistanceThresholdCounter"]["observation_window"]
+    DISTANCE_THRESHOLD = Config.detection_strategy["DistanceThresholdCounter"]["distance_threshold"]
     Samples = List[Sample]  # type hinting (typedef in C++)
 
     def __init__(self):
@@ -36,7 +36,8 @@ class DistanceThresholdCounterCoefficientVar(DistanceThresholdCounter):
             return False
 
         cv = self.calculate_cv(recent_samples)
-        self.logger.info("Coefficient of Variation: {:.2f}".format(cv))
+        if not cv:
+            self.logger.info("Coefficient of Variation: {:.2f}".format(cv))
 
         recent_distance_values = map(lambda s: s.distance, recent_samples)
         recent_distance_square_filter = map(lambda s: 1 if s < self.DISTANCE_THRESHOLD else 0, recent_distance_values)
