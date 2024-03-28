@@ -23,20 +23,17 @@ class SensorMonitor:
         while True:
             self._collect_data()
             self._work_detector.detect()
-            time.sleep(1)
+            if Config.IS_DEBUG:
+                self._logger.debug("Calling sleep(5)")
+                time.sleep(5)
+            else:
+                time.sleep(1)
 
     def _collect_data(self):
         distance = self._sonar.get_distance()
         if distance:
             timestamp = round(time.time())  # in seconds [int]
             self._work_detector.add_sample(Sample(timestamp, distance))
-        # TODO what is this for? Maybe this should be moved to start_loop
-        if Config.IS_DEBUG:
-            self._logger.debug("Calling sleep(5)")
-            time.sleep(5)
-        # else:
-        #     self._logger.debug("Calling sleep(1)")
-        #     time.sleep(1)
 
     # def _schedule_repeatedly(self, interval, func, *args):
     #     """

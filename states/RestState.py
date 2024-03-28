@@ -23,9 +23,6 @@ class RestState(State):
         self.logger.info("RestState evaluate")
         if activity == Activity.WORKING:
             self.logger.info("working move to WorkState")
-            # TODO This might be optional. Do not come back to WorkState after the break started
-            # You can avoid false work comebacks if you rest time is near the desk
-            # Unless the activity evaluation exclude near desk presence as working time
             self.context.change_state(states.WorkState.WorkState(self.context))
 
         current_time = self.context.get_current_time()

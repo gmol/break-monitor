@@ -4,21 +4,24 @@ import time
 from typing import List
 
 from detector.DetectionStrategy import DetectionStrategy
+from detector.DistanceThresholdCounter import DistanceThresholdCounter
 from detector.Sample import Sample
 from states import Config
+import numpy as np
 
 
-class DistanceThresholdCounter(DetectionStrategy):
-    OBSERVATION_WINDOW = Config.detection_strategy["DistanceThresholdCounter"]["observation_window"]
-    DISTANCE_THRESHOLD = Config.detection_strategy["DistanceThresholdCounter"]["distance_threshold"]
-    Samples = List[Sample]
+class DistanceThresholdCounterCoefficientVar(DistanceThresholdCounter):
+    OBSERVATION_WINDOW = Config.detection_strategy["DistanceThresholdCounterCoefficientVar"]["observation_window"]
+    DISTANCE_THRESHOLD = Config.detection_strategy["DistanceThresholdCounterCoefficientVar"]["distance_threshold"]
+    Samples = List[Sample]  # type hinting (typedef in C++)
 
     def __init__(self):
-        self.logger = logging.getLogger("DistanceThresholdCounter")
-        self.logger.info("* DistanceThresholdCounter observation_window[{}] distance_threshold[{}]"
+        self.logger = logging.getLogger("DistanceThresholdCounterCoefficientVar")
+        self.logger.info("* observation_window[{}] distance_threshold[{}]"
                          .format(self.OBSERVATION_WINDOW, self.DISTANCE_THRESHOLD))
 
     def detect(self, measurements: Samples):
+        # TODO Use inherited method
         current_time_in_sec = round(time.time())
         recent_samples = list(filter(
             lambda s: s.timestamp >= current_time_in_sec - self.OBSERVATION_WINDOW, measurements
@@ -32,6 +35,9 @@ class DistanceThresholdCounter(DetectionStrategy):
             self.logger.warning("Not enough measurements with the last observation window to estimate presence.")
             return False
 
+        cv = self.calculate_cv(recent_samples)
+        self.logger.info("Coefficient of Variation: {:.2f}".format(cv))
+
         recent_distance_values = map(lambda s: s.distance, recent_samples)
         recent_distance_square_filter = map(lambda s: 1 if s < self.DISTANCE_THRESHOLD else 0, recent_distance_values)
         average_distance = statistics.mean(recent_distance_square_filter)
@@ -40,3 +46,14 @@ class DistanceThresholdCounter(DetectionStrategy):
         if average_distance >= 0.5:
             return True
         return False
+
+    def calculate_cv(self, data):
+        n = 30
+        if len(data) < n:
+            self.logger.info("Error: Data array should have at least {} samples.", n)
+            return None
+        else:
+            last_n_samples = data[-n:]
+            mean = np.mean(last_n_samples)
+            std_dev = np.std(last_n_samples, ddof=1)  # Use ddof=1 to calculate unbiased estimate of standard deviation
+            return (std_dev / mean) * 100

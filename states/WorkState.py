@@ -19,6 +19,7 @@ class WorkState(State):
         if context.get_work_start_time() <= 0:
             context.set_work_start_time_now()
         self.context.get_light_controller().light_off()
+        self.swap = False
 
     def evaluate(self, activity: Activity) -> None:
         self.logger.debug(f"WorkState evaluate")
@@ -39,7 +40,10 @@ class WorkState(State):
                                  .format(round(elapsed_time / 60),
                                          round(self.context.get_work_start_time()),
                                          round(current_time)))
-                light_config = Config.light_config[LightEffect.ALERT]
+                if self.swap:
+                    light_config = Config.light_config[LightEffect.OVERTIME]
+                else:
+                    light_config = Config.light_config[LightEffect.ALERT]
                 self.context.get_light_controller().light_on(light_config)
             else:
                 light_config = Config.light_config[LightEffect.OVERTIME]
@@ -49,7 +53,7 @@ class WorkState(State):
                 "----->  Working time! Timer[{}]. Time left[{}]"
                 .format(round(elapsed_time), round(OVERTIME - elapsed_time)))
 
-    # TODO double check this. it might be not necessary as I improve timer handling
+    # TODO double check fix_timer. it might be not necessary as I improve timer handling
     # when PI is turned on it looks like it starts where it stopped and the timer is set to the previous date
     def fix_timer(self):
         # self.logger.debug(f"WorkState timer fix")

@@ -51,7 +51,8 @@ class WorkDetector:
 
     def clean_up(self):
         if len(self._measurements) > 1000:
-            # TODO provide a better cleanup
+            # TODO provide a better cleanup.
+            # - what did I mean by "better cleanup"?
             del self._measurements[0]
 
     # def call_repeatedly(self, interval, func, *args):
