@@ -54,7 +54,8 @@ class DistanceThresholdCounterCoefficientVar(DistanceThresholdCounter):
             self.logger.info("Error: Data array should have at least {} samples.".format(n))
             return None
         else:
-            last_n_samples = data[-n:]
+            last_n_samples = map(lambda s: s.distance, data[-n:])
+            # last_n_samples = data[-n:]
             mean = np.mean(last_n_samples)
             std_dev = np.std(last_n_samples, ddof=1)  # Use ddof=1 to calculate unbiased estimate of standard deviation
             return (std_dev / mean) * 100
