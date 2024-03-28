@@ -36,7 +36,7 @@ class DistanceThresholdCounterCoefficientVar(DistanceThresholdCounter):
             return False
 
         cv = self.calculate_cv(recent_samples)
-        if not cv:
+        if cv is not None:
             self.logger.info("Coefficient of Variation: {:.2f}".format(cv))
 
         recent_distance_values = map(lambda s: s.distance, recent_samples)
