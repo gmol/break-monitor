@@ -9,6 +9,7 @@ from states import Config
 
 
 class DistanceThresholdCounter(DetectionStrategy):
+
     OBSERVATION_WINDOW = Config.detection_strategy["DistanceThresholdCounter"]["observation_window"]
     DISTANCE_THRESHOLD = Config.detection_strategy["DistanceThresholdCounter"]["distance_threshold"]
     Samples = List[Sample]
@@ -19,6 +20,8 @@ class DistanceThresholdCounter(DetectionStrategy):
                          .format(self.OBSERVATION_WINDOW, self.DISTANCE_THRESHOLD))
 
     def detect(self, measurements: Samples):
+        still_sig_detect_result = self.detect_still_signal(measurements)
+        self.logger.info("DistanceThresholdCounter: Detecting presence signal: {}".format(still_sig_detect_result))
         current_time_in_sec = round(time.time())
         recent_samples = list(filter(
             lambda s: s.timestamp >= current_time_in_sec - self.OBSERVATION_WINDOW, measurements
@@ -40,3 +43,7 @@ class DistanceThresholdCounter(DetectionStrategy):
         if average_distance >= 0.5:
             return True
         return False
+
+    def detect_still_signal(self, measurements):
+        self.logger.info("DistanceThresholdCounter: Detecting still signal")
+        pass

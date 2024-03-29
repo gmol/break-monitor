@@ -54,7 +54,7 @@ if __name__ == '__main__':
     # if it is a windows platform or darwin (mac)
     if 'win32' in sys.platform or 'darwin' in sys.platform:
         logger.info(">>>>> PC environment <<<<<")
-        monitor = SensorMonitor(work_detector=WorkDetector(ctxt, DistanceThresholdCounter()), sonar=FakeSonar())
+        monitor = SensorMonitor(work_detector=WorkDetector(ctxt, DistanceThresholdCounterCoefficientVar()), sonar=FakeSonar())
     else:
         logger.info(">>>>> PI environment <<<<<")
         monitor = SensorMonitor(work_detector=WorkDetector(ctxt, DistanceThresholdCounterCoefficientVar()), sonar=HCSR04())
