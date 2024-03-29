@@ -20,7 +20,7 @@ class DistanceThresholdCounterCoefficientVar(DistanceThresholdCounter):
                          .format(self.OBSERVATION_WINDOW, self.DISTANCE_THRESHOLD))
 
     def detect(self, measurements: Samples):
-        super().detect(measurements)
+        return super().detect(measurements)
 
     # def detect2(self, measurements: Samples):
     #     # TODO Use inherited method
@@ -69,9 +69,7 @@ class DistanceThresholdCounterCoefficientVar(DistanceThresholdCounter):
         self.logger.info("DistanceThresholdCounterCoefficientVar: Detecting still signal")
         n = 30
         if len(measurements) < n:
-            for s in measurements:
-                self.logger.info("Sample: {}".format(s.distance))
-            self.logger.info("Error: Data array should have at least {} samples.".format(n))
+            self.logger.info("Still signal detection: not enough data")
             return None
         else:
             last_n_samples = list(map(lambda s: s.distance, measurements[-n:]))
