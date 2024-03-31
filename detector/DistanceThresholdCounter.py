@@ -47,4 +47,4 @@ class DistanceThresholdCounter(DetectionStrategy):
 
     def detect_no_movement(self, measurements):
         self.logger.info("DistanceThresholdCounter: Detecting still signal")
-        pass
+        return False
