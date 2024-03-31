@@ -50,4 +50,5 @@ class DistanceThresholdCounterCoefficientVar(DistanceThresholdCounter):
             last_n_samples = list(map(lambda s: s.distance, measurements[-n:]))
             mean = statistics.mean(last_n_samples)
             average_error = statistics.mean(list(map(lambda s: abs(s - mean), last_n_samples)))
+            self.logger("No movement detection result: {}".format(((average_error / mean) * 100)))
             return ((average_error / mean) * 100) < 2
