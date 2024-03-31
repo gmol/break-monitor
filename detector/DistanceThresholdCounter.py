@@ -20,8 +20,9 @@ class DistanceThresholdCounter(DetectionStrategy):
                          .format(self.OBSERVATION_WINDOW, self.DISTANCE_THRESHOLD))
 
     def detect(self, measurements: Samples):
-        still_sig_detect_result = self.detect_still_signal(measurements)
-        self.logger.info("DistanceThresholdCounter: Detecting presence signal: {}".format(still_sig_detect_result))
+        if self.detect_no_movement(measurements):
+            self.logger.info("No movement detected")
+            return False
         current_time_in_sec = round(time.time())
         recent_samples = list(filter(
             lambda s: s.timestamp >= current_time_in_sec - self.OBSERVATION_WINDOW, measurements
@@ -44,6 +45,6 @@ class DistanceThresholdCounter(DetectionStrategy):
             return True
         return False
 
-    def detect_still_signal(self, measurements):
+    def detect_no_movement(self, measurements):
         self.logger.info("DistanceThresholdCounter: Detecting still signal")
         pass

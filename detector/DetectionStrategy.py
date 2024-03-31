@@ -8,6 +8,6 @@ class DetectionStrategy(ABC):
         pass
 
     @abstractmethod
-    def detect_still_signal(self, measurements):
+    def detect_no_movement(self, measurements):
         pass
 
