@@ -48,5 +48,5 @@ class SolidLight(Light):
 
     def off(self):
         self.logger.info("Solid Light OFF")
-        self.pixels.fill(0)
+        self.pixels.fill((0, 0, 0))
         self.pixels.show()
