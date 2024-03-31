@@ -38,7 +38,7 @@ class DistanceThresholdCounterCoefficientVar(DistanceThresholdCounter):
     #         return (std_dev / mean) * 100
 
     def detect_no_movement(self, measurements):
-        n = int(self.OBSERVATION_WINDOW / 3 if Config.IS_DEBUG else self.OBSERVATION_WINDOW * 2)
+        n = int(self.OBSERVATION_WINDOW / 3 if Config.IS_DEBUG else self.OBSERVATION_WINDOW * 6)
         if len(measurements) < n:
             self.logger.info("No movement detection: not enough data")
             return False

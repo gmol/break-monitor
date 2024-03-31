@@ -23,11 +23,11 @@ class SensorMonitor:
         while True:
             self._collect_data()
             self._work_detector.detect()
-            if Config.IS_DEBUG:
-                self._logger.debug("Calling sleep(5)")
-                time.sleep(5)
-            else:
-                time.sleep(1)
+            # if Config.IS_DEBUG:
+            #     self._logger.debug("Calling sleep(5)")
+            #     time.sleep(5)
+            # else:
+            time.sleep(1)
 
     def _collect_data(self):
         distance = self._sonar.get_distance()

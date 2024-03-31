@@ -39,9 +39,9 @@ class WorkDetector:
     #             self._context.update_action(Activity.IDLE)
 
     def detect(self):
-        self._logger.info("* detect")
         if len(self._measurements) > 0:
             work_detected = self._detectionStrategy.detect(self._measurements)
+            self._logger.info(f"Work detected: {work_detected}")
             if work_detected:
                 self._context.update_action(Activity.WORKING)
             else:
