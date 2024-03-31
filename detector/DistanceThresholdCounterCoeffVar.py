@@ -38,7 +38,6 @@ class DistanceThresholdCounterCoefficientVar(DistanceThresholdCounter):
     #         return (std_dev / mean) * 100
 
     def detect_no_movement(self, measurements):
-        self.logger.info("no movement detection")
         if Config.IS_DEBUG:
             n = int(self.OBSERVATION_WINDOW / 3)
         else:
