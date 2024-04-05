@@ -20,6 +20,7 @@ class WorkState(State):
             context.set_work_start_time_now()
         self.context.get_light_controller().light_off()
         self.swap = False
+        self.swapCounter = 0
 
     def evaluate(self, activity: Activity) -> None:
         self.logger.debug(f"WorkState evaluate")
@@ -40,9 +41,11 @@ class WorkState(State):
                                  .format(round(elapsed_time / 60),
                                          round(self.context.get_work_start_time()),
                                          round(current_time)))
+                self.swapCounter += 1
+                if self.swapCounter % 6 == 0:
+                    self.swap = not self.swap
                 if self.swap:
                     light_config = Config.light_config[LightEffect.OVERTIME]
-                    self.swap = not self.swap
                 else:
                     light_config = Config.light_config[LightEffect.ALERT]
                     self.swap = not self.swap
