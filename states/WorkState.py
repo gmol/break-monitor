@@ -42,8 +42,10 @@ class WorkState(State):
                                          round(current_time)))
                 if self.swap:
                     light_config = Config.light_config[LightEffect.OVERTIME]
+                    self.swap = not self.swap
                 else:
                     light_config = Config.light_config[LightEffect.ALERT]
+                    self.swap = not self.swap
                 self.context.get_light_controller().light_on(light_config)
             else:
                 light_config = Config.light_config[LightEffect.OVERTIME]
